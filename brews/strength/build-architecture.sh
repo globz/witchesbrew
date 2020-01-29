@@ -1,6 +1,5 @@
 #!/bin/bash
 # iREP deployment [architecture] script
-# Installation : copy script in $HOME and chmod u+x build-architecture.sh
 
 #Architecture specification before deployment
 #WARNING - Change target based on which server you are about to deploy

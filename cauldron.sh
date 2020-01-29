@@ -1,5 +1,6 @@
 #!/bin/bash
 #iREP server - [cauldron]
+# Installation : copy script in $HOME and chmod u+x cauldron.sh
 
 #This script is in charge of creating the required environment in order for iREP to work properly.
 #Out of this hellish brewing will emerge a server properly configured and ready to operate a given iREP instance.
@@ -18,15 +19,19 @@ STRENGTH=true
 BUILD_ARCHITECTURE=true
 
 
-function cauldron {
+function cauldron () {
 
     if [ "$DEXTERITY" == true ]
     then
       echo "dex"
 
+    fi
+
     if [ "$INTELLIGENCE" == true ]
     then
       echo "int"
+
+    fi
 
     if [ "$STRENGTH" == true ]
     then
