@@ -11,13 +11,15 @@ BUILD_EMACS=true
 BUILD_PHP_TOOLS=true
 
 #brews/intelligence
-INTELLIGENCE=true
+INTELLECT=true
 BUILD_CRONJOBS=false
 
 #brews/strength
 STRENGTH=true
 BUILD_ARCHITECTURE=true
 
+#TARGET (MTL/JVF/InDev)
+TARGET="InDev"
 
 function cauldron () {
 
@@ -27,7 +29,7 @@ function cauldron () {
 
     fi
 
-    if [ "$INTELLIGENCE" == true ]
+    if [ "$INTELLECT" == true ]
     then
       echo "int"
 
