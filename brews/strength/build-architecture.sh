@@ -5,6 +5,8 @@
 #WARNING - Change target based on which server you are about to deploy
 TARGET="InDev"
 
+#TODO : Why not make use of $USER this TARGET variable is not useful here
+
 #Set chown Owner/Group commands based on TARGET
 if [ "$TARGET" == "MTL" ]
 then
