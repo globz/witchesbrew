@@ -3,7 +3,7 @@
 
 #WARNING - Change target based on which server you are about to deploy
 TARGET="InDev" #Should be set by cauldron!
-REAGENTS="~/witchesbrew/brews/intellect/regeants/"
+REAGENTS="~/witchesbrew/brews/intellect/reagents"
 
 #Setup crontab & enable jobs
 echo "installing cronjobs..."
@@ -24,8 +24,10 @@ then
   echo "installing sudo cronjobs..."
   echo "@reboot root /bin/sh $REAGENTS/mnt_network_drive.sh > /var/www/logs/mnt_network_drive.log 2>&1" > ~/mnt_network_drive.cron
   sudo cp ~/mnt_network_drive.cron /etc/cron.d/mnt_network_drive
+  rm ~/mnt_network_drive.cron
   echo "30 2 * * 1 certbot renew >> /var/log/le-renew.log" > ~/le-renew.cron
   sudo cp ~/le-renew.cron /etc/cron.d/le-renew
+  rm ~/le-renew.cron
 
 elif [ "$TARGET" == "InDev" ]
 then
@@ -42,7 +44,7 @@ then
   echo "installing sudo cronjobs..."
   echo "@reboot root /bin/sh $REAGENTS/mnt_network_drive.sh > /var/www/logs/mnt_network_drive.log 2>&1" > ~/mnt_network_drive.cron
   sudo cp ~/mnt_network_drive.cron /etc/cron.d/mnt_network_drive
-  #TODO delete *.cron
+  rm ~/mnt_network_drive.cron
 
 elif [ "$TARGET" == "JVF" ]
 then
