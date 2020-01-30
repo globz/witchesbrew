@@ -1,7 +1,6 @@
 #!/bin/bash
 #iREP server - [cronjobs]
 
-#WARNING - Change target based on which server you are about to deploy
 TARGET="InDev" #Should be set by cauldron!
 REAGENTS="/home/$USER/witchesbrew/brews/intellect/reagents"
 
