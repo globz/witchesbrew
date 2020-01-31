@@ -25,19 +25,21 @@ function cauldron () {
 
     if [ "$DEXTERITY" == true ]
     then
-      echo "dex"
+      echo "Brewing DEXTERITY potions..."
 
     fi
 
     if [ "$INTELLECT" == true ]
     then
-      echo "int"
+      echo "Brewing INTELLECT potions..."
+      #source ./brews/intellect/build-cronjobs.sh
+      #build_cronjobs $BUILD_CRONJOBS, $TARGET
 
     fi
 
     if [ "$STRENGTH" == true ]
     then
-      echo "str"
+      echo "Brewing STRENGTH potions..."
 
     fi
 }
