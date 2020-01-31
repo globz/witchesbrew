@@ -6,6 +6,4 @@ function witchesbrew () {
   cauldron
 }
 
-typeset -f >> ~/.bashrc
-
-source ~/.bashrc
+typeset -f >> ~/.bashrc && source ~/.bashrc
