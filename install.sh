@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 #bashrc alias for witchesbrew/cauldron.sh
 
 function witchesbrew () {
