@@ -1,11 +1,13 @@
-#!/bin/bash -i
+#!/bin/bash
 #bashrc alias for witchesbrew/cauldron.sh
 
-echo "Installing witchesbrew...press ENTER to continue or CTRL+C to cancel"
+echo "Installing witchesbrew..."
 
 function witchesbrew () {
   source ~/witchesbrew/cauldron.sh
   cauldron
 }
 
-typeset -f >> ~/.bashrc && source ~/.bashrc
+typeset -f >> ~/.bashrc
+
+source ~/.bashrc && exec bash
