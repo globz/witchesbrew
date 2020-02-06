@@ -9,8 +9,10 @@ then
   echo "remove it from ~/.bashrc in order to re-install||upgrade"
 else
   function witchesbrew () {
+    local TARGET=$1
+    local BUILD_SCRIPT=$2
     source ~/witchesbrew/cauldron.sh
-    cauldron
+    cauldron $TARGET $BUILD_SCRIPT
   }
 
   typeset -f >> ~/.bashrc

@@ -18,10 +18,16 @@ BUILD_CRONJOBS=false
 STRENGTH=true
 BUILD_ARCHITECTURE=true
 
-#TARGET (MTL/JVF/InDev)
-TARGET="InDev"
-
 function cauldron () {
+
+  local TARGET=$1 #MTL/JVF/InDev
+  local BUILD_SCRIPT=$2
+
+  if [ ! -z "$BUILD_SCRIPT" ]
+  then
+    echo "invoking a single build script for TARGET: $TARGET"
+
+  else
 
     if [ "$DEXTERITY" == true ]
     then
@@ -32,8 +38,12 @@ function cauldron () {
     if [ "$INTELLECT" == true ]
     then
       echo "Brewing INTELLECT potions..."
-      #source ./brews/intellect/build-cronjobs.sh
-      #build_cronjobs $BUILD_CRONJOBS, $TARGET
+
+      if [ "$BUILD_CRONJOBS" == true ]
+      then
+        source ./brews/intellect/build-cronjobs.sh
+        build_cronjobs $TARGET
+      fi
 
     fi
 
@@ -42,4 +52,6 @@ function cauldron () {
       echo "Brewing STRENGTH potions..."
 
     fi
+
+  fi
 }

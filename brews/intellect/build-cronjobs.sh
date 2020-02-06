@@ -6,8 +6,13 @@ REAGENTS="/home/$USER/witchesbrew/brews/intellect/reagents"
 
 #Setup crontab & enable jobs
 echo "installing cronjobs..."
-if [ "$TARGET" == "MTL" ]
-then
+
+function build_cronjobs() {
+
+  TARGET=$1
+
+  if [ "$TARGET" == "MTL" ]
+  then
   crontab -u irep -r
   crontab -u irep -l | { cat; echo "20 4 * * * /usr/bin/php /var/www/updater/janitor.php > /var/www/logs/janitor.log 2>&1"; } | sort - | uniq - | crontab -
   crontab -u irep -l | { cat; echo "30 4 * * * /usr/bin/php /var/www/updater/odbc-fetcher.php > /var/www/logs/odbc-fetcher.log 2>&1"; } | sort - | uniq - | crontab -
@@ -28,8 +33,8 @@ then
   sudo cp ~/le-renew.cron /etc/cron.d/le-renew
   rm ~/le-renew.cron
 
-elif [ "$TARGET" == "InDev" ]
-then
+  elif [ "$TARGET" == "InDev" ]
+  then
   crontab -u dev -r
   crontab -u dev -l | { cat; echo "10 05 * * * /usr/bin/php /var/www/updater/janitor.php > /var/www/logs/janitor.log 2>&1"; } | sort - | uniq - | crontab -
   crontab -u dev -l | { cat; echo "15 05 * * * /usr/bin/php /var/www/updater/odbc-fetcher.php > /var/www/logs/odbc-fetcher.log 2>&1"; } | sort - | uniq - | crontab -
@@ -45,8 +50,8 @@ then
   sudo cp ~/mnt_network_drive.cron /etc/cron.d/mnt_network_drive
   rm ~/mnt_network_drive.cron
 
-elif [ "$TARGET" == "JVF" ]
-then
+  elif [ "$TARGET" == "JVF" ]
+  then
   crontab -u irep -r
   crontab -u irep -l | { cat; echo "20 4 * * * /usr/bin/php /var/www/updater/janitor.php > /var/www/logs/janitor.log 2>&1"; } | sort - | uniq - | crontab -
   crontab -u irep -l | { cat; echo "10 17 * * * /usr/bin/php /var/www/updater/odbc-fetcher.php > /var/www/logs/odbc-fetcher.log 2>&1"; } | sort - | uniq - | crontab -
@@ -69,4 +74,6 @@ then
   sudo cp ~/le-renew.cron /etc/cron.d/le-renew
   rm ~/le-renew.cron
 
-fi
+  fi
+
+}
