@@ -27,8 +27,12 @@ function cauldron () {
 
   if [ ! -z "$BUILD_SCRIPT" ] && [ ! -z "$TARGET" ]
   then
+    local BREW=$(echo "$BUILD_SCRIPT" | tr '-' '_')
     local POUCH=$(locate -br "^$BUILD_SCRIPT.sh$")
     echo "invoking a single build script for TARGET: $TARGET & PATH: $POUCH"
+    source $POUCH
+    BREW $TARGET
+
   else
 
     if [ "$DEXTERITY" == true ] && [ ! -z "$TARGET" ]

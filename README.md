@@ -1,5 +1,5 @@
 Installation :
-- cd ~/ && git clone||pull https://github.com/globz/witchesbrew.git
+- cd ~/ && git clone || pull https://github.com/globz/witchesbrew.git
 - cd ~/witchesbrew && ./install.sh
 
 Usage :
