@@ -1,15 +1,13 @@
 #!/bin/bash
 #iREP server - [cronjobs]
 
-TARGET="InDev" #Should be set by cauldron!
-REAGENTS="/home/$USER/witchesbrew/brews/intellect/reagents"
-
 #Setup crontab & enable jobs
 echo "installing cronjobs..."
 
 function build_cronjobs() {
 
   local TARGET=$1
+  local REAGENTS="/home/$USER/witchesbrew/brews/intellect/reagents"
 
   if [ "$TARGET" == "MTL" ]
   then

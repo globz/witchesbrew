@@ -1,9 +1,11 @@
 #!/bin/bash
 #iREP server - [cauldron]
-# Installation : copy script in $HOME and chmod u+x cauldron.sh
 
 #This script is in charge of creating the required environment in order for iREP to work properly.
 #Out of this hellish brewing will emerge a server properly configured and ready to operate a given iREP instance.
+
+#Cauldron default configuration
+#The configuration below will be executed by default if no $BUILD_SCRIPT has been supplied!
 
 #brews/dexterity
 DEXTERITY=false
@@ -25,17 +27,18 @@ function cauldron () {
 
   if [ ! -z "$BUILD_SCRIPT" ] && [ ! -z "$TARGET" ]
   then
-    echo "invoking a single build script for TARGET: $TARGET"
+    local PATH=locate -br '^$BUILD_SCRIPT.sh$'
+    echo "invoking a single build script for TARGET: $TARGET & PATH: $PATH"
   else
 
     if [ "$DEXTERITY" == true ] && [ ! -z "$TARGET" ]
     then
-      echo "Brewing DEXTERITY potions..."
+      echo -e "\e[0;35mBrewing DEXTERITY potions...\e[m"
     fi
 
     if [ "$INTELLECT" == true ] && [ ! -z "$TARGET" ]
     then
-      echo "Brewing INTELLECT potions..."
+      echo -e "\e[0;35mBrewing INTELLECT potions...\e[m"
 
       if [ "$BUILD_CRONJOBS" == true ]
       then
@@ -47,7 +50,7 @@ function cauldron () {
 
     if [ "$STRENGTH" == true ] && [ ! -z "$TARGET" ]
     then
-      echo "Brewing STRENGTH potions..."
+      echo -e "\e[0;35mBrewing STRENGTH potions...\e[m"
     fi
 
   fi
