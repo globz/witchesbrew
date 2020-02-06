@@ -10,4 +10,3 @@ Usage :
 TODO :
 - Finalize build-architecture & make use of $USER instead of TARGET
 - Improve install.sh, try to replace exec bash
-- Find $SCRIPT with locate -br '^build-cronjobs.sh$' OR define $BREW_TYPE when invoking a single $BUILD_SCRIPT
