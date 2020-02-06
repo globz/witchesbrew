@@ -12,7 +12,7 @@ BUILD_PHP_TOOLS=true
 
 #brews/intelligence
 INTELLECT=true
-BUILD_CRONJOBS=false
+BUILD_CRONJOBS=true
 
 #brews/strength
 STRENGTH=true
@@ -23,19 +23,17 @@ function cauldron () {
   local TARGET=$1 #MTL/JVF/InDev
   local BUILD_SCRIPT=$2
 
-  if [ ! -z "$BUILD_SCRIPT" ]
+  if [ ! -z "$BUILD_SCRIPT" ] && [ ! -z "$TARGET" ]
   then
     echo "invoking a single build script for TARGET: $TARGET"
-
   else
 
-    if [ "$DEXTERITY" == true ]
+    if [ "$DEXTERITY" == true ] && [ ! -z "$TARGET" ]
     then
       echo "Brewing DEXTERITY potions..."
-
     fi
 
-    if [ "$INTELLECT" == true ]
+    if [ "$INTELLECT" == true ] && [ ! -z "$TARGET" ]
     then
       echo "Brewing INTELLECT potions..."
 
@@ -47,10 +45,9 @@ function cauldron () {
 
     fi
 
-    if [ "$STRENGTH" == true ]
+    if [ "$STRENGTH" == true ] && [ ! -z "$TARGET" ]
     then
       echo "Brewing STRENGTH potions..."
-
     fi
 
   fi

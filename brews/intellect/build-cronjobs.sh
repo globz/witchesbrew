@@ -9,7 +9,7 @@ echo "installing cronjobs..."
 
 function build_cronjobs() {
 
-  TARGET=$1
+  local TARGET=$1
 
   if [ "$TARGET" == "MTL" ]
   then
