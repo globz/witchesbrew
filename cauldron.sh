@@ -31,7 +31,7 @@ function cauldron () {
     local POUCH=$(locate -br "^$BUILD_SCRIPT.sh$")
     echo "invoking a single build script for TARGET: $TARGET & PATH: $POUCH"
     source $POUCH
-    BREW $TARGET
+    $BREW $TARGET
 
   else
 
