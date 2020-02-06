@@ -27,7 +27,7 @@ function cauldron () {
 
   if [ ! -z "$BUILD_SCRIPT" ] && [ ! -z "$TARGET" ]
   then
-    local PATH=locate -br '^$BUILD_SCRIPT.sh$'
+    local PATH="locate -br '^$BUILD_SCRIPT.sh$'"
     echo "invoking a single build script for TARGET: $TARGET & PATH: $PATH"
   else
 
