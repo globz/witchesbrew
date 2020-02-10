@@ -9,5 +9,6 @@ Usage :
 - $BREW_RECIPE = brew-* (no file extension needed)
 
 TODO :
-- Finalize build-architecture & make use of $USER instead of TARGET
+- Finalize brew-architecture & make use of $USER instead of TARGET
 - Improve install.sh, try to replace exec bash
+- Implement sudo updatedb on fresh install so it can locate brews

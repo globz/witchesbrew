@@ -5,20 +5,20 @@
 #Out of this hellish brewing will emerge a server properly configured and ready to operate a given iREP instance.
 
 #Cauldron default configuration
-#The configuration below will be executed by default if no $BUILD_SCRIPT has been supplied!
+#The configuration below will be executed by default if no $BREW_RECIPE has been supplied!
 
 #brews/dexterity
 DEXTERITY=false
-BUILD_EMACS=true
-BUILD_PHP_TOOLS=true
+BREW_EMACS=true
+BREW_PHP_TOOLS=true
 
 #brews/intelligence
 INTELLECT=true
-BUILD_CRONJOBS=true
+BREW_CRONJOBS=true
 
 #brews/strength
 STRENGTH=true
-BUILD_ARCHITECTURE=true
+BREW_ARCHITECTURE=true
 
 function cauldron () {
 
@@ -29,7 +29,7 @@ function cauldron () {
   then
     local BREW=$(echo "$BREW_RECIPE" | tr '-' '_')
     local POUCH=$(locate -br "^$BREW_RECIPE.sh$")
-    echo "Brewing recipe located @ $POUCH for TARGET : $TARGET"
+    echo -e "\e[0;35mBrewing recipe located @ $POUCH for TARGET : $TARGET\e[m"
     source $POUCH
     $BREW $TARGET
 
@@ -44,7 +44,7 @@ function cauldron () {
     then
       echo -e "\e[0;35mBrewing INTELLECT potions...\e[m"
 
-      if [ "$BUILD_CRONJOBS" == true ]
+      if [ "$BREW_CRONJOBS" == true ]
       then
         source ./brews/intellect/build-cronjobs.sh
         build_cronjobs $TARGET
