@@ -4,7 +4,7 @@
 #Setup crontab & enable jobs
 echo "Brewing cronjobs..."
 
-function build_cronjobs() {
+function brew_cronjobs() {
 
   local TARGET=$1
   local REAGENTS="/home/$USER/witchesbrew/brews/intellect/reagents"
