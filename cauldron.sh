@@ -23,13 +23,13 @@ BUILD_ARCHITECTURE=true
 function cauldron () {
 
   local TARGET=$1 #MTL/JVF/InDev
-  local BUILD_SCRIPT=$2
+  local BREW_RECIPE=$2
 
-  if [ ! -z "$BUILD_SCRIPT" ] && [ ! -z "$TARGET" ]
+  if [ ! -z "$BREW_RECIPE" ] && [ ! -z "$TARGET" ]
   then
-    local BREW=$(echo "$BUILD_SCRIPT" | tr '-' '_')
-    local POUCH=$(locate -br "^$BUILD_SCRIPT.sh$")
-    echo "invoking a single build script for TARGET: $TARGET & PATH: $POUCH"
+    local BREW=$(echo "$BREW_RECIPE" | tr '-' '_')
+    local POUCH=$(locate -br "^$BREW_RECIPE.sh$")
+    echo "Brewing recipe located @ $POUCH for TARGET : $TARGET"
     source $POUCH
     $BREW $TARGET
 

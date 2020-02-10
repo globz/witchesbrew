@@ -2,7 +2,7 @@
 #iREP server - [cronjobs]
 
 #Setup crontab & enable jobs
-echo "installing cronjobs..."
+echo "Brewing cronjobs..."
 
 function build_cronjobs() {
 

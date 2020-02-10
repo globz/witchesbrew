@@ -10,9 +10,9 @@ then
 else
   function witchesbrew () {
     local TARGET=$1
-    local BUILD_SCRIPT=$2
+    local BREW_RECIPE=$2
     source ~/witchesbrew/cauldron.sh
-    cauldron $TARGET $BUILD_SCRIPT
+    cauldron $TARGET $BREW_RECIPE
   }
 
   typeset -f >> ~/.bashrc

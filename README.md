@@ -4,8 +4,9 @@ Installation :
 
 Usage :
 - witchesbrew $TARGET (Brew from default cauldron configuration)
-- witchesbrew $TARGET $BUILD_SCRIPT (Brew specific $BUILD_SCRIPT)
+- witchesbrew $TARGET $BREW_RECIPE (Brew specific $BREW_RECIPE)
 - $TARGET = InDev, MTL, JVF
+- $BREW_RECIPE = brew-* (no file extension needed)
 
 TODO :
 - Finalize build-architecture & make use of $USER instead of TARGET
