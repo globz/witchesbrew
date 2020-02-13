@@ -6,10 +6,10 @@ echo "Brewing cronjobs..."
 
 function brew_cronjobs() {
 
-  local TARGET=$1
+  local ENV=$1
   local REAGENTS="/home/$USER/witchesbrew/brews/intellect/reagents"
 
-  if [ "$TARGET" == "MTL" ]
+  if [ "$ENV" == "MTL" ]
   then
   crontab -u irep -r
   crontab -u irep -l | { cat; echo "20 4 * * * /usr/bin/php /var/www/updater/janitor.php > /var/www/logs/janitor.log 2>&1"; } | sort - | uniq - | crontab -
@@ -31,7 +31,7 @@ function brew_cronjobs() {
   sudo cp ~/le-renew.cron /etc/cron.d/le-renew
   rm ~/le-renew.cron
 
-  elif [ "$TARGET" == "InDev" ]
+  elif [ "$ENV" == "InDev" ]
   then
   crontab -u dev -r
   crontab -u dev -l | { cat; echo "10 05 * * * /usr/bin/php /var/www/updater/janitor.php > /var/www/logs/janitor.log 2>&1"; } | sort - | uniq - | crontab -
@@ -48,7 +48,7 @@ function brew_cronjobs() {
   sudo cp ~/mnt_network_drive.cron /etc/cron.d/mnt_network_drive
   rm ~/mnt_network_drive.cron
 
-  elif [ "$TARGET" == "JVF" ]
+  elif [ "$ENV" == "JVF" ]
   then
   crontab -u irep -r
   crontab -u irep -l | { cat; echo "20 4 * * * /usr/bin/php /var/www/updater/janitor.php > /var/www/logs/janitor.log 2>&1"; } | sort - | uniq - | crontab -

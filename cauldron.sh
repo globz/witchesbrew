@@ -22,40 +22,72 @@ BREW_ARCHITECTURE=true
 
 function cauldron () {
 
-  local TARGET=$1 #MTL/JVF/InDev
+  local VALID_ENV=("MTL" "JVF" "InDev")
+  local ENV=$1
   local BREW_RECIPE=$2
 
-  if [ ! -z "$BREW_RECIPE" ] && [ ! -z "$TARGET" ]
+  if ! elementIn "$ENV" "${VALID_ENV[@]}"
+  then
+    echo "Invalid ENV, expected value are one the following : ${VALID_ENV[@]}" && return
+
+  if [ "$ENV" == "MTL" ] && [ "$USER" != "irep" ]
+  then
+    echo "Invalid user for ENV : $ENV - expected user [irep]" && return
+
+  elif [ "$ENV" == "InDev" ] && [ "$USER" != "dev" ]
+  then
+    echo "Invalid user for ENV : $ENV - expected user [dev]" && return
+
+  elif [ "$ENV" == "JVF" ] && [ "$USER" != "irep" ]
+  then
+    echo "Invalid user for ENV : $ENV - expected user [irep]" && return
+  fi
+
+  if [ ! -z "$BREW_RECIPE" ]
   then
     local BREW=$(echo "$BREW_RECIPE" | tr '-' '_')
     local POUCH=$(locate -br "^$BREW_RECIPE.sh$")
-    echo -e "\e[0;35mBrewing recipe located @ $POUCH for TARGET : $TARGET\e[m"
+    echo -e "\e[0;35mBrewing recipe located @ $POUCH for ENV : $ENV\e[m"
     source $POUCH
-    $BREW $TARGET
+    $BREW $ENV
 
   else
 
-    if [ "$DEXTERITY" == true ] && [ ! -z "$TARGET" ]
+    if [ "$DEXTERITY" == true ]
     then
       echo -e "\e[0;35mBrewing DEXTERITY potions...\e[m"
     fi
 
-    if [ "$INTELLECT" == true ] && [ ! -z "$TARGET" ]
+    if [ "$INTELLECT" == true ]
     then
       echo -e "\e[0;35mBrewing INTELLECT potions...\e[m"
 
       if [ "$BREW_CRONJOBS" == true ]
       then
-        source ./brews/intellect/build-cronjobs.sh
-        build_cronjobs $TARGET
+        source ./brews/intellect/brew-cronjobs.sh
+        build_cronjobs $ENV
       fi
 
     fi
 
-    if [ "$STRENGTH" == true ] && [ ! -z "$TARGET" ]
+    if [ "$STRENGTH" == true ]
     then
       echo -e "\e[0;35mBrewing STRENGTH potions...\e[m"
     fi
 
+    if [ "$BREW_ARCHITECTURE" == true ]
+    then
+      source ./brews/strength/brew-architecture.sh
+      build_architecture $ENV
+    fi
+
   fi
+
+}
+
+elementIn () {
+  local e match="$1"
+  shift
+  for e; do [[ "$e" == "$match" ]] && return 0; done
+  return 1
 }

@@ -9,10 +9,10 @@ then
   echo "remove it from ~/.bashrc in order to re-install||upgrade"
 else
   function witchesbrew () {
-    local TARGET=$1
+    local ENV=$1
     local BREW_RECIPE=$2
     source ~/witchesbrew/cauldron.sh
-    cauldron $TARGET $BREW_RECIPE
+    cauldron $ENV $BREW_RECIPE
   }
 
   typeset -f >> ~/.bashrc
