@@ -1,18 +1,18 @@
 #!/bin/bash
-# iREP-JVF local backup to NAS809 on Toronto network via FTP
+# iREP-MTL local backup to MTL-NAS via FTP
 #
 # This script will backup everything that is essential
-# to iREP and will upload it via FTP to NAS809/irepbackup
+# to iREP and will upload it via FTP to MTL-NAS/iREP-MTL
 
 ### System Setup ###
 ### backup directory for temp. file storage.
-BACKUP=/home/irep/backups
+BACKUP=/home/irep/iREP-tmp-backup
 
 ### FTP ###
-FTPD="/irepbackup"
-FTPU=""
-FTPP=""
-FTPS="10.1.1.32"
+FTPD="/iREP-MTL"
+FTPU="KEEPASS"
+FTPP="KEEPASS"
+FTPS="192.168.200.14"
 
 ### Binaries ###
 TAR="$(which tar)"
@@ -42,14 +42,14 @@ $TAR -cf $BACKUP/$NOW/letsencrypt.tar /etc/letsencrypt
 $TAR -cf $BACKUP/$NOW/home.tar /home/irep --exclude='/home/irep/backups' --exclude='/home/irep/.viminfo' --exclude='/home/irep/.nano_history' --exclude='/home/irep/.mysql_history' --exclude='/home/irep/.emacs'
 
 
-ARCHIVE=$BACKUP/iREP-JVF-$NOW.tar.gz
+ARCHIVE=$BACKUP/iREP-MTL-$NOW.tar.gz
 ARCHIVED=$BACKUP/$NOW
 
 $TAR -zcvf $ARCHIVE $ARCHIVED
 
 ### upload backup to NAS809 ###
 cd $BACKUP
-DUMPFILE=iREP-JVF-$NOW.tar.gz
+DUMPFILE=iREP-MTL-$NOW.tar.gz
 $FTP -in $FTPS <<END_SCRIPT
 quote USER $FTPU
 quote PASS $FTPP
@@ -62,5 +62,5 @@ END_SCRIPT
 ### deleting temp files ###
 rm -r $ARCHIVED
 rm -r $DUMPFILE
-echo "Backup finished and transferred for iREP-JVF"
+echo "Backup finished and transferred for iREP-MTL"
 exit

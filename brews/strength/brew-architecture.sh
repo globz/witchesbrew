@@ -24,6 +24,16 @@ function brew_architecture() {
   perm0750="chmod 0750"
   perm0770="chmod 0770"
 
+  #build ~/iREP-backup
+  backup=/home/$USER/iREP-tmp-backup/
+  $build backup
+
+  #Apply proper directory permission
+  $perm0700 $backup
+
+  #Apply proper directory ownership
+  $Owner $backup
+
   #build csv/
   csv=/var/csv/
   $build $csv
@@ -97,7 +107,7 @@ function brew_architecture() {
   #Apply proper ownership
   find $logs -exec $OwnerWWW {} \;
 
-  #build /updater/ folder structure - TODO rename to toolshed
+  #build /updater/ folder structure
   updater=/var/www/updater/
   $build $updater
 
@@ -134,6 +144,23 @@ function brew_architecture() {
 
   #Apply proper ownership
   find $updater -type d -name "tmp" -prune -o -type d -name "logs" -prune -o -exec $Owner {} \;
+
+  #build /css/ folder structure
+  css=/var/www/irep/css/
+  $build $css
+
+  cd $css
+  touch bootstrap.min.css
+  touch contract.min.css
+  touch flatpickr.min.css
+  touch notie.min.css
+  touch order.min.css
+
+  #Apply proper files permission
+  find $css -type f -exec $perm0640 {} \;
+
+  #Apply proper ownership
+  find $css -exec $OwnerWWW {} \;
 
   #build /lib/ folder structure
   lib=/var/www/irep/lib/
@@ -476,6 +503,6 @@ function brew_architecture() {
   #Apply proper ownership
   find $logic -exec $OwnerWWW {} \;
 
-  echo "The architecture for ENV : $ENV has been successfully created"
+  cd ~/ && echo "The architecture for ENV : $ENV has been successfully created"
 
 }

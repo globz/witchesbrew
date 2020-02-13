@@ -6,12 +6,12 @@
 
 ### System Setup ###
 ### backup directory for temp. file storage.
-BACKUP=/home/irep/backups
+BACKUP=/home/irep/iREP-tmp-backup
 
 ### FTP ###
 FTPD="/irepbackup"
-FTPU=""
-FTPP=""
+FTPU="KEEPASS"
+FTPP="KEEPASS"
 FTPS="10.1.1.32"
 
 ### Binaries ###
