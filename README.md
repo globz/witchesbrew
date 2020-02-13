@@ -5,7 +5,7 @@ Installation :
 Usage :
 - witchesbrew $ENV (Brew from default cauldron configuration)
 - witchesbrew $ENV $BREW_RECIPE (Brew specific $BREW_RECIPE)
-- $TARGET = InDev, MTL, JVF
+- $ENV = InDev, MTL, JVF
 - $BREW_RECIPE = brew-* (no file extension needed)
 
 TODO :
