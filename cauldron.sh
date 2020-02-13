@@ -30,7 +30,7 @@ function cauldron () {
   then
     echo "Invalid ENV, expected value are one the following : ${VALID_ENV[@]}" && return
 
-  if [ "$ENV" == "MTL" ] && [ "$USER" != "irep" ]
+  elif [ "$ENV" == "MTL" ] && [ "$USER" != "irep" ]
   then
     echo "Invalid user for ENV : $ENV - expected user [irep]" && return
 
