@@ -156,6 +156,9 @@ function brew_architecture() {
   touch notie.min.css
   touch order.min.css
 
+  #Apply proper directories permission
+  find $css -type d -exec $perm0710 {} \;
+
   #Apply proper files permission
   find $css -type f -exec $perm0640 {} \;
 
