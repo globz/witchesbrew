@@ -26,7 +26,7 @@ function brew_architecture() {
 
   #build ~/iREP-backup
   backup=/home/$USER/iREP-tmp-backup/
-  $build backup
+  $build $backup
 
   #Apply proper directory permission
   $perm0700 $backup
