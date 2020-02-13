@@ -65,7 +65,7 @@ function cauldron () {
       if [ "$BREW_CRONJOBS" == true ]
       then
         source ./brews/intellect/brew-cronjobs.sh
-        build_cronjobs $ENV
+        brew_cronjobs $ENV
       fi
 
     fi
@@ -78,7 +78,7 @@ function cauldron () {
     if [ "$BREW_ARCHITECTURE" == true ]
     then
       source ./brews/strength/brew-architecture.sh
-      build_architecture $ENV
+      brew_architecture $ENV
     fi
 
   fi
