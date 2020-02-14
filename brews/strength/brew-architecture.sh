@@ -80,6 +80,27 @@ function brew_architecture() {
   #Apply proper ownership
   find $config -exec $OwnerWWW {} \;
 
+  #build /irep/ folder
+  irep=/var/www/irep/
+  $build $irep
+
+  cd $irep
+  touch .htaccess
+  touch index.php
+
+  #Apply proper directories permission
+  $perm0710 $irep
+
+  #Apply proper files permission
+  $perm0640 .htaccess
+  $perm0640 index.php
+
+  #Apply proper ownership
+  $OwnerWWW $irep
+  $OwnerWWW .htaccess
+  $OwnerWWW index.php
+
+
   #build /logs/ folder structure
   logs=/var/www/logs/
   $build $logs
@@ -164,6 +185,60 @@ function brew_architecture() {
 
   #Apply proper ownership
   find $css -exec $OwnerWWW {} \;
+
+  #build /error_pages/ folder structure
+  error_pages=/var/www/irep/error_pages/
+  $build $error_pages
+
+  cd $error_pages
+  touch 404.html
+  touch 500.html
+
+  #Apply proper directories permission
+  find $error_pages -type d -exec $perm0710 {} \;
+
+  #Apply proper files permission
+  find $error_pages -type f -exec $perm0640 {} \;
+
+  #Apply proper ownership
+  find $error_pages -exec $OwnerWWW {} \;
+
+  #build /history/ folder structure
+  history=/var/www/irep/history/
+  $build $history
+
+  #Apply proper directories permission
+  $perm0750 $history
+
+  #Apply proper ownership
+  $OwnerWWW $history
+
+  #build /orders/ folder structure
+  orders=/var/www/irep/orders/
+  $build $orders
+
+  #Apply proper directories permission
+  $perm0730 $orders
+
+  #Apply proper ownership
+  $OwnerWWW $orders
+
+  #build /iREP/ folder structure
+  iREP=/var/www/irep/iREP/
+  $build $iREP
+
+  cd $iREP
+  touch app.php
+  touch logout.php
+
+  #Apply proper directories permission
+  find $iREP -type d -exec $perm0710 {} \;
+
+  #Apply proper files permission
+  find $iREP -type f -exec $perm0640 {} \;
+
+  #Apply proper ownership
+  find $iREP -exec $OwnerWWW {} \;
 
   #build /lib/ folder structure
   lib=/var/www/irep/lib/
@@ -505,6 +580,27 @@ function brew_architecture() {
 
   #Apply proper ownership
   find $logic -exec $OwnerWWW {} \;
+
+  #build /reporting/ folder structure
+  reporting=/var/www/irep/reporting/
+  $build $reporting
+
+  cd $reporting
+  $build pricing
+  $build products
+  touch .htaccess
+
+  #Apply proper directories permission
+  find $reporting -type d -exec $perm0750 {} \;
+
+  #Apply proper files permission
+  $perm0640 .htaccess
+
+  #Apply proper ownership
+  $OwnerWWW $reporting
+  $OwnerWWW pricing/
+  $OwnerWWW products/
+
 
   cd ~/ && echo "The architecture for ENV : $ENV has been successfully created"
 
