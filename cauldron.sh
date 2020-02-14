@@ -25,6 +25,7 @@ function cauldron () {
   local VALID_ENV=("MTL" "JVF" "InDev")
   local ENV=$1
   local BREW_RECIPE=$2
+  local DIR=$(locate -br "^witchesbrew$")
 
   if ! elementIn "$ENV" "${VALID_ENV[@]}"
   then
@@ -64,7 +65,7 @@ function cauldron () {
 
       if [ "$BREW_CRONJOBS" == true ]
       then
-        source $PWD/brews/intellect/brew-cronjobs.sh
+        source $DIR/brews/intellect/brew-cronjobs.sh
         brew_cronjobs $ENV
       fi
 
@@ -77,7 +78,7 @@ function cauldron () {
 
     if [ "$BREW_ARCHITECTURE" == true ]
     then
-      source $PWD/brews/strength/brew-architecture.sh
+      source $DIR/brews/strength/brew-architecture.sh
       brew_architecture $ENV
     fi
 
