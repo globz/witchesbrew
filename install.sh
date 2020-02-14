@@ -17,5 +17,8 @@ else
 
   typeset -f >> ~/.bashrc
 
+  echo "witchesbrew must update mlocate database..."
+  sudo updatedb
   source ~/.bashrc && exec bash
+
 fi
