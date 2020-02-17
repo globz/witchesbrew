@@ -9,4 +9,4 @@ Usage :
 - $BREW_RECIPE = brew-* (no file extension needed)
 
 TODO :
-- Implement sudo updatedb on fresh install so it can locate brews
+- Test brew-wkhtmltopdf grep version string

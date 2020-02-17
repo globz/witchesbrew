@@ -1,13 +1,13 @@
 #!/bin/bash
 #iREP server - [cronjobs]
 
-#Setup crontab & enable jobs
-echo "Brewing cronjobs..."
-
 function brew_cronjobs() {
 
   local ENV=$1
-  local REAGENTS="/home/$USER/witchesbrew/brews/intellect/reagents"
+  local DIR=$(locate -br "^witchesbrew$")
+  local REAGENTS="$DIR/brews/intellect/reagents"
+
+  echo "Brewing cronjobs..."
 
   if [ "$ENV" == "MTL" ]
   then

@@ -1,12 +1,12 @@
 #!/bin/bash
 # iREP server - [architecture]
 
-#Setup iREP server folder/file architecture
-echo "Brewing architecture..."
-
 function brew_architecture() {
 
   local ENV=$1
+
+  #Setup iREP server folder/file architecture
+  echo "Brewing architecture..."
 
   Owner="chown $USER:$USER"
   OwnerWWW="chown $USER:www-data"

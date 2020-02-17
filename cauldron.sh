@@ -11,6 +11,7 @@
 DEXTERITY=false
 BREW_EMACS=true
 BREW_PHP_TOOLS=true
+BREW_WKHTMLTOPDF=true
 
 #brews/intelligence
 INTELLECT=true
@@ -57,6 +58,13 @@ function cauldron () {
     if [ "$DEXTERITY" == true ]
     then
       echo -e "\e[0;35mBrewing DEXTERITY potions...\e[m"
+
+      if [ "$BREW_WKHTMLTOPDF" == true ]
+      then
+        source $DIR/brews/dexterity/brew-wkhtmltopdf.sh
+        brew_wkhtmltopdf $ENV
+      fi
+
     fi
 
     if [ "$INTELLECT" == true ]
