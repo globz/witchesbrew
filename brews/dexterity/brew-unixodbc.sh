@@ -15,10 +15,12 @@ function brew_unixodbc() {
 
   sudo apt-get install build-essential
 
-  /home/$USER/unixODBC-2.3.7/configure
-
-  #rm -rf /home/$USER/unixODBC-2.3.7/
-  #rm /home/$USER/unixODBC-2.3.7.tar.gz
+  cd /home/$USER/unixODBC-2.3.7/
+  ./configure && make
+  
+  cd /home/$USER/
+  rm -rf /home/$USER/unixODBC-2.3.7/
+  rm /home/$USER/unixODBC-2.3.7.tar.gz
 
   if echo `odbcinst --version` | grep -q "unixODBC 2.3.7"
   then
