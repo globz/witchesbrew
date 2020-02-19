@@ -10,7 +10,7 @@ function brew_unixodbc() {
 
   echo "Brewing unixODBC..."
 
-  cp REAGENTS/unixODBC-2.3.7.tar /home/$USER/
+  cp $REAGENTS/unixODBC-2.3.7.tar /home/$USER/
   tar xvf /home/$USER/unixODBC-2.3.7.tar
 
   sudo apt-get install build-essential
