@@ -12,7 +12,7 @@ function brew_odbc_conf() {
   ODBC_CONF=$REAGENTS/odbc-ini/iREP-$ENV/odbc.ini
 
   cat $ODBC_CONF > /home/$USER/.odbc.ini
-  cat $ODBC_CONF > /etc/odbc.ini
+  sudo cat $ODBC_CONF > /etc/odbc.ini
 
   echo "ODBC configuration files are now active, please edit and configure the user/password for both odbc.ini files located @"
   odbcinst -j
