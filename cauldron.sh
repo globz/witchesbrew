@@ -13,6 +13,7 @@ BREW_EMACS=true
 BREW_PHP_TOOLS=true
 BREW_WKHTMLTOPDF=true
 BREW_UNIXODBC=true
+BREW_ISERIES_ODBC=true
 BREW_ODBC_CONF=true
 
 #brews/intelligence
@@ -71,6 +72,12 @@ function cauldron () {
       then
         source $DIR/brews/dexterity/brew-unixodbc.sh
         brew_unixodbc $ENV
+      fi
+
+      if [ "$BREW_ISERIES_ODBC" == true ]
+      then
+        source $DIR/brews/dexterity/brew-iseries-odbc.sh
+        brew_iseries_odbc $ENV
       fi
 
       if [ "$BREW_ODBC_CONF" == true ]
