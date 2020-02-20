@@ -10,3 +10,4 @@ Usage :
 
 TODO :
 - Test brew-wkhtmltopdf grep version string
+- Validate if iseriesaccess_7.1.0-1.0_amd64.deb still works on Ubuntu 18
