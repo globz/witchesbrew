@@ -16,7 +16,7 @@ function brew_unixodbc() {
   sudo apt-get install build-essential
 
   cd /home/$USER/unixODBC-2.3.7/
-  sudo ./configure --sysconfdir=/etc && make && make install
+  ./configure && make && sudo checkinstall
 
   cd /home/$USER/
   rm -rf /home/$USER/unixODBC-2.3.7/
