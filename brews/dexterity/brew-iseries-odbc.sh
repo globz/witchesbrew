@@ -11,7 +11,7 @@ function brew_iseries_odbc() {
 
   local ODBC_DRIVER=$REAGENTS/iseriesaccess_7.1.0-1.0_amd64.deb
 
-  dpkg -i $ODBC_DRIVER
+  sudo dpkg -i $ODBC_DRIVER
 
   sudo ln -s /opt/ibm/iSeriesAccess/lib64/libcwb* /usr/lib
 
