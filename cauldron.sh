@@ -12,13 +12,14 @@ DEXTERITY=false
 BREW_EMACS=true
 BREW_PHP_TOOLS=true
 BREW_WKHTMLTOPDF=true
+BREW_UNIXODBC=true
 
 #brews/intelligence
-INTELLECT=true
+INTELLECT=false
 BREW_CRONJOBS=true
 
 #brews/strength
-STRENGTH=true
+STRENGTH=false
 BREW_ARCHITECTURE=true
 
 function cauldron () {
@@ -63,6 +64,12 @@ function cauldron () {
       then
         source $DIR/brews/dexterity/brew-wkhtmltopdf.sh
         brew_wkhtmltopdf $ENV
+      fi
+
+      if [ "$BREW_UNIXODBC" == true ]
+      then
+        source $DIR/brews/dexterity/brew-unixodbc.sh
+        brew_unixodbc $ENV
       fi
 
     fi
