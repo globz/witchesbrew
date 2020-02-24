@@ -11,7 +11,8 @@ else
   function witchesbrew () {
     local ENV=$1
     local BREW_RECIPE=$2
-    source ~/witchesbrew/cauldron.sh
+    local DIR=$(locate -br "^witchesbrew$")
+    source $DIR/cauldron.sh
     cauldron $ENV $BREW_RECIPE
   }
 

@@ -1,6 +1,6 @@
 Installation :
-- cd ~/ && git clone || pull https://github.com/globz/witchesbrew.git
-- cd ~/witchesbrew && ./install.sh
+- git clone https://github.com/globz/witchesbrew.git witchesbrew
+- cd witchesbrew/ && ./install.sh
 
 Usage :
 - witchesbrew $ENV (Brew from default cauldron configuration)

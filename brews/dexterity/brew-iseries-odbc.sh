@@ -6,10 +6,9 @@ function brew_iseries_odbc() {
   local ENV=$1
   local DIR=$(locate -br "^witchesbrew$")
   local REAGENTS="$DIR/brews/dexterity/reagents"
+  local ODBC_DRIVER=$REAGENTS/iseriesaccess_7.1.0-1.0_amd64.deb
 
   echo "Brewing iSeries Access ODBC driver..."
-
-  local ODBC_DRIVER=$REAGENTS/iseriesaccess_7.1.0-1.0_amd64.deb
 
   sudo apt install odbcinst1debian2
   sudo apt install -f

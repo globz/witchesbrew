@@ -19,6 +19,7 @@ BREW_ODBC_CONF=true
 #brews/intelligence
 INTELLECT=false
 BREW_CRONJOBS=true
+BREW_IPTABLES=true
 
 #brews/strength
 STRENGTH=false
@@ -96,6 +97,12 @@ function cauldron () {
       then
         source $DIR/brews/intellect/brew-cronjobs.sh
         brew_cronjobs $ENV
+      fi
+
+      if [ "$BREW_IPTABLES" == true ]
+      then
+        source $DIR/brews/intellect/brew-iptables.sh
+        brew_iptables $ENV
       fi
 
     fi

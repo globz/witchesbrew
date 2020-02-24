@@ -1,0 +1,164 @@
+*filter
+
+# Allow all loopback (lo0) traffic and reject traffic
+# to localhost that does not originate from lo0.
+-A INPUT -i lo -j ACCEPT
+-A INPUT ! -i lo -s 127.0.0.0/8 -j REJECT
+
+#Allowing DNS lookups (tcp, udp port 53) to our DNS servers
+-A OUTPUT -p udp -d 192.168.200.11 --dport 53 -m state --state NEW,ESTABLISHED -j ACCEPT
+-A INPUT  -p udp -s 192.168.200.11 --sport 53 -m state --state ESTABLISHED     -j ACCEPT
+-A OUTPUT -p tcp -d 192.168.200.11 --dport 53 -m state --state NEW,ESTABLISHED -j ACCEPT
+-A INPUT  -p tcp -s 192.168.200.11 --sport 53 -m state --state ESTABLISHED     -j ACCEPT
+
+# Allow ping.
+-A INPUT -p icmp -m state --state NEW --icmp-type 8 -j ACCEPT
+
+# Allow SSH connections to local network ONLY + VPN
+-A INPUT -p tcp --dport 22 -s 192.168.200.0/24 -m state --state NEW,ESTABLISHED -j ACCEPT
+-A INPUT -p tcp --dport 22 -s 127.0.0.0/8 -m state --state NEW,ESTABLISHED -j ACCEPT
+-A INPUT -p tcp --dport 22 -s 192.168.201.0/24 -m state --state NEW,ESTABLISHED -j ACCEPT
+-A INPUT -p tcp --dport 22 -j DROP
+
+# Allow HTTP and HTTPS connections from anywhere
+# (the normal ports for web servers).
+-A INPUT -p tcp --dport 80 -m state --state NEW,ESTABLISHED -j ACCEPT
+-A INPUT -p tcp --dport 443 -m state --state NEW,ESTABLISHED -j ACCEPT
+
+# Allow inbound traffic from established connections.
+# This includes ICMP error returns.
+-A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT
+
+# Allow incoming FTP traffic from MTL-NAS - support both active and passive mode
+-A INPUT  -p tcp -s 192.168.200.14 --dport 21 -m conntrack --ctstate ESTABLISHED,NEW -j ACCEPT
+-A INPUT  -p tcp -s 192.168.200.14 --dport 20 -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT
+-A INPUT  -p tcp -s 192.168.200.14 --sport 1024:65535 --dport 20:65535 -m conntrack --ctstate NEW,ESTABLISHED -j ACCEPT
+
+# Drop incoming malformed NULL packets
+-A INPUT -p tcp --tcp-flags ALL NONE -j DROP
+
+# Drop incoming XMAS packets
+-A INPUT -p tcp --tcp-flags ALL FIN,PSH,URG -j DROP
+
+# Drop all other inbound.
+-A INPUT -j DROP
+
+# Log what was incoming but denied (optional but useful).
+-A INPUT -m limit --limit 5/min -j LOG --log-prefix "iptables_INPUT_denied: " --log-level 7
+
+# Allow outgoing (ESTABLISHED state only) SSH connection response (for the corresponding incoming SSH connection request)
+-A OUTPUT -p tcp --sport 22 -m state --state ESTABLISHED -j ACCEPT
+
+# Allow outgoing (ESTABLISHED state only) HTTP connection response (for the corresponding incoming HTTP connection request)
+-A OUTPUT -p tcp --sport 80 -m state --state ESTABLISHED -j ACCEPT
+
+# Allow outgoing (ESTABLISHED state only) HTTPS connection response (for the corresponding incoming HTTPS connection request)
+-A OUTPUT -p tcp --sport 443 -m state --state ESTABLISHED -j ACCEPT
+
+# Allow outgoing traffic to AS400 based on dport (iREP updater)
+-A OUTPUT -p tcp -d 10.1.1.10 --dport 8471 -j ACCEPT
+
+# Allow outgoing traffic to AS400 based on tcp dport (SAMBA - shared network drive)
+-A OUTPUT -p tcp -d 10.1.1.10 -m multiport --dport 389,88,53,445,135,5722,464,9389,139 -j ACCEPT
+
+# Allow outgoing traffic to AS400 based on upd dport (SAMBA - shared network drive)
+-A OUTPUT -p udp -d 10.1.1.10 -m multiport --dport 389,88,53,445,464,138,67,2535,137 -j ACCEPT
+
+# Allow outgoing FTP traffic to MTL-NAS - support both active and passive mode
+-A OUTPUT -p tcp -d 192.168.200.14  --dport 21 -m conntrack --ctstate NEW,ESTABLISHED -j ACCEPT
+-A OUTPUT -p tcp -d 192.168.200.14  --dport 20 -m conntrack --ctstate ESTABLISHED -j ACCEPT
+-A OUTPUT -p tcp -d 192.168.200.14  --sport 1024:65535 --dport 20:65535 -m conntrack --ctstate NEW,ESTABLISHED -j ACCEPT
+
+# Drop outgoing traffic to JVF-MTL-DC
+-A OUTPUT -d 192.168.200.11 -j DROP
+
+# Drop outgoing traffic to JVFDC1
+-A OUTPUT -d 10.1.1.59 -j DROP
+
+# Drop outgoing traffic to JVFDC4
+-A OUTPUT -d 10.1.1.57 -j DROP
+
+# Drop outgoing traffic to 10.1.1.15 (SMTP Relay)
+-A OUTPUT -d 10.1.1.15 -j DROP
+
+# Drop outgoing traffic to 10.1.1.35 (SMTP Relay)
+-A OUTPUT -d 10.1.1.35 -j DROP
+
+# Drop outgoing traffic AS400
+-A OUTPUT -d 10.1.1.10 -j DROP
+
+# Drop outgoing traffic to JVF-MTL-APP
+-A OUTPUT -d 192.168.200.13 -j DROP
+
+# Drop outgoing traffic to MTL-NAS
+-A OUTPUT -d 192.168.200.14 -j DROP
+
+# Drop outgoing traffic to NAS809
+-A OUTPUT -d 10.1.1.32 -j DROP
+
+# Drop outgoing traffic to voicemail server
+-A OUTPUT -d 10.1.1.52 -j DROP
+
+# Drop outgoing traffic to iREP-SRV
+-A OUTPUT -d 192.168.200.15 -j DROP
+
+# Drop outgoing traffic to iREP-JVF
+-A OUTPUT -d 10.1.1.25 -j DROP
+
+# Drop outgoing traffic to JVFAPPS8
+-A OUTPUT -d 10.1.1.8 -j DROP
+
+# Drop outgoing traffic to JVFPRINT
+-A OUTPUT -d 10.1.1.40 -j DROP
+
+# Drop outgoing traffic to JVFPRINT16
+-A OUTPUT -d 10.1.1.69 -j DROP
+
+# Drop outgoing traffic to JVFQA
+-A OUTPUT -d 10.1.1.48 -j DROP
+
+# Drop outgoing traffic to SPICEWORKS
+-A OUTPUT -d 10.1.1.23 -j DROP
+
+# Drop outgoing traffic to GENISOY
+-A OUTPUT -d 10.1.1.55 -j DROP
+
+# Drop outgoing traffic to JVFFS1
+-A OUTPUT -d 10.1.1.50 -j DROP
+
+# Drop outgoing traffic to JVFCDCAUTO
+-A OUTPUT -d 10.1.1.29 -j DROP
+
+# Drop outgoing traffic to JVFCDCSQL
+-A OUTPUT -d 10.1.1.30 -j DROP
+
+# Drop outgoing traffic to JVFWFVM
+-A OUTPUT -d 10.1.1.62 -j DROP
+
+# Drop outgoing traffic to JVFWFTEST
+-A OUTPUT -d 10.1.1.64 -j DROP
+
+# Drop outgoing traffic to JVFWF1
+-A OUTPUT -d 10.1.1.65 -j DROP
+
+# Drop outgoing traffic to JVFIBSQL
+-A OUTPUT -d 10.1.1.66 -j DROP
+
+# Drop outgoing traffic to NASQC
+-A OUTPUT -d 10.1.1.33 -j DROP
+
+# Drop outgoing traffic to NASSRVBKP
+-A OUTPUT -d 10.1.1.37 -j DROP
+
+# Drop outgoing Telnet.
+-A OUTPUT -p tcp --sport 23 -j DROP
+
+# Drop all traffic forwarding.
+-A FORWARD -j DROP
+
+# Log any traffic which was sent to you
+# for forwarding (optional but useful).
+-A FORWARD -m limit --limit 5/min -j LOG --log-prefix "iptables_FORWARD_denied: " --log-level 7
+
+
+COMMIT
