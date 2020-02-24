@@ -7,9 +7,9 @@
 
 #Allowing DNS lookups (tcp, udp port 53) to our DNS servers
 -A OUTPUT -p udp -d 10.1.1.57,10.1.1.59 --dport 53 -m state --state NEW,ESTABLISHED -j ACCEPT
--A INPUT -p udp -s 10.1.1.57,10.1.1.59 --sport 53 -m state --state ESTABLISHED     -j ACCEPT
+-A INPUT -p udp -s 10.1.1.57,10.1.1.59 --sport 53 -m state --state ESTABLISHED -j ACCEPT
 -A OUTPUT -p tcp -d 10.1.1.57,10.1.1.59 --dport 53 -m state --state NEW,ESTABLISHED -j ACCEPT
--A INPUT -p tcp -s 10.1.1.57,10.1.1.59 --sport 53 -m state --state ESTABLISHED     -j ACCEPT
+-A INPUT -p tcp -s 10.1.1.57,10.1.1.59 --sport 53 -m state --state ESTABLISHED -j ACCEPT
 
 # Allow ping.
 -A INPUT -p icmp -m state --state NEW --icmp-type 8 -j ACCEPT
