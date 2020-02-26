@@ -23,7 +23,9 @@ function brew_fail2ban() {
   #Custom iREP Jail
   sudo cp $iREP_JAIL_CONF /etc/fail2ban/filter.d/
 
-  sudo cat $JAIL_LOCAL > /etc/fail2ban/jail.local
+  sudo -i
+  cat $JAIL_LOCAL > /etc/fail2ban/jail.local
+  exit
 
   sudo fail2ban-client reload
 
