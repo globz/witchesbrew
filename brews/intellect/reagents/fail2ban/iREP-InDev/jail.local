@@ -1,0 +1,114 @@
+# "bantime" is the number of seconds that a host is banned.
+#Currently set to forever must be unban manually by admin
+bantime  = -1
+
+# A host is banned if it has generated "maxretry" during the last "findtime"
+# seconds.
+# 3 failed attempts in 3 hours will result in a ban forever
+findtime = 10800
+maxretry = 3
+
+# "usedns" specifies if jails should trust hostnames in logs,
+#   warn when reverse DNS lookups are performed, or ignore all hostnames in logs
+#
+# yes:   if a hostname is encountered, a reverse DNS lookup will be performed.
+# warn:  if a hostname is encountered, a reverse DNS lookup will be performed,
+#        but it will be logged as a warning.
+# no:    if a hostname is encountered, will not be used for banning,
+#        but it will be logged as info.
+usedns = warn
+
+#
+# JAILS
+#
+
+# Next jails corresponds to the standard configuration in Fail2ban 0.6 which
+# was shipped in Debian. Enable any defined here jail by including
+#
+# [SECTION_NAME]
+# enabled = true
+
+#
+# in /etc/fail2ban/jail.local.
+#
+# Optionally you may override any other parameter (e.g. banaction,
+# action, port, logpath, etc) in that section within jail.local
+
+[ssh]
+
+enabled  = true
+port     = ssh
+filter   = sshd
+logpath  = /var/log/auth.log
+maxretry = 6
+
+[ssh-ddos]
+
+enabled  = true
+port     = ssh
+filter   = sshd-ddos
+logpath  = /var/log/auth.log
+maxretry = 6
+
+#
+# HTTP servers
+#
+
+[apache]
+
+enabled  = true
+port     = http,https
+filter   = apache-auth
+logpath  = /var/log/apache2/error.log
+maxretry = 3
+
+[apache-noscript]
+
+enabled  = true
+port     = http,https
+filter   = apache-noscript
+logpath  = /var/log/apache2/error.log
+maxretry = 1
+
+[apache-overflows]
+
+enabled  = true
+port     = http,https
+filter   = apache-overflows
+logpath  = /var/log/apache2/error.log
+maxretry = 2
+
+[apache-nohome]
+
+enabled  = true
+port     = http,https
+filter   = apache-nohome
+logpath  = /var/log/apache2/error.log
+maxretry = 2
+
+[apache-badbots]
+
+enabled  = true
+port     = http,https
+filter   = apache-badbots
+logpath  = /var/log/apache2/error.log
+maxretry = 2
+
+[iREP]
+
+enabled  = true
+port     = http,https
+filter   = irep-auth
+logpath  = /var/log/apache2/error.log
+maxretry = 3
+
+# Ban attackers that try to use PHP's URL-fopen() functionality
+# through GET/POST variables. - Experimental, with more than a year
+# of usage in production environments.
+
+[php-url-fopen]
+
+enabled = true
+port    = http,https
+filter  = php-url-fopen
+logpath = /var/log/apache2/access.log
