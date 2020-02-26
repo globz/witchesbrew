@@ -1,5 +1,7 @@
+[DEFAULT]
+
 # "bantime" is the number of seconds that a host is banned.
-#Currently set to forever must be unban manually by admin
+# Currently set to forever must be unban manually by admin
 bantime  = -1
 
 # A host is banned if it has generated "maxretry" during the last "findtime"
@@ -9,7 +11,7 @@ findtime = 10800
 maxretry = 3
 
 # "usedns" specifies if jails should trust hostnames in logs,
-#   warn when reverse DNS lookups are performed, or ignore all hostnames in logs
+#  warn when reverse DNS lookups are performed, or ignore all hostnames in logs
 #
 # yes:   if a hostname is encountered, a reverse DNS lookup will be performed.
 # warn:  if a hostname is encountered, a reverse DNS lookup will be performed,
