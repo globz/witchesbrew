@@ -11,6 +11,7 @@ function brew_fail2ban() {
   local REAGENTS="$DIR/brews/intellect/reagents"
   local JAIL_LOCAL=$REAGENTS/fail2ban/iREP-$ENV/jail.local
   local iREP_JAIL_CONF=$REAGENTS/fail2ban/jails/irep-auth.conf
+  local APACHE_COMMON_JAIL_CONF=$REAGENTS/fail2ban/jails/apache-common.conf #TODO validate if needed or not
 
   echo "Brewing fail2ban..."
 
@@ -23,7 +24,11 @@ function brew_fail2ban() {
   #Custom iREP Jail
   sudo cp $iREP_JAIL_CONF /etc/fail2ban/filter.d/
 
+  #jail.local configuration
   cat $JAIL_LOCAL | sudo tee /etc/fail2ban/jail.local
+
+  #Patch for apache-common.conf - Most likely only needed for Ubuntu 14 LTS
+  cat $APACHE_COMMON_JAIL_CONF | sudo tee /etc/fail2ban/filter.d/apache-common.conf
 
   sudo fail2ban-client reload
 
