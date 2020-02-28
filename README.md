@@ -15,4 +15,4 @@ TODO :
 - fail2ban apache-common patch will probably not be needed in Ubuntu 18.04 LTS
 - samba ~ Validate /etc/nsswitch.conf on Ubuntu 18.04 before overriding it
 - samba ~ Validate /etc/samba/smb.conf on Ubuntu 18.04 before overriding it
-- brew_odbc_conf - export should go into ~/.bashrc && ~/.bash_profile OR /etc/environment  ~ https://www.tecmint.com/set-unset-environment-variables-in-linux/
+- brew_odbc_conf - Validate if exports already exist!

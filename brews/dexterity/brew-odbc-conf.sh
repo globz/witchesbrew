@@ -1,5 +1,7 @@
 #!/bin/bash
 #iREP server - [ODBC configuration files]
+#guide : https://www.tecmint.com/set-unset-environment-variables-in-linux/
+#env help : https://www.tecmint.com/set-unset-environment-variables-in-linux/
 
 function brew_odbc_conf() {
 
@@ -15,9 +17,7 @@ function brew_odbc_conf() {
   cp -R $ODBC_INI $ODBC_DIR
   cp $ODBC_INST $ODBC_DIR
 
-  #ENV variables
-  #export ODBCSYSINI=$ODBC_DIR
-  #export ODBCINI=$ODBC_DIR/odbc.ini
+  #ENV variables - TODO Validate if already exist...
   echo "export ODBCSYSINI=$ODBC_DIR" | sudo tee -a ~/.bashrc
   echo "export ODBCSYSINI=$ODBC_DIR" | sudo tee -a ~/.bash_profile
   echo "export ODBCINI=$ODBC_DIR/odbc.ini" | sudo tee -a ~/.bashrc
