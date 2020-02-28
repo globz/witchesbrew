@@ -3,7 +3,7 @@
 
 echo "Installing witchesbrew..."
 
-if [ grep -Fq "witchesbrew" ~/.bashrc ] || [ grep -Fq "witchesbrew" ~/.bashrc_profile ];
+if [ grep -Fq "witchesbrew" ~/.bashrc ] || [ grep -Fq "witchesbrew" ~/.bashrc_profile ]
 then
   echo "witchesbrew is already present in your ~/.bashrc configuration file."
   echo "remove it from ~/.bashrc in order to re-install||upgrade"
