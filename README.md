@@ -16,4 +16,3 @@ TODO :
 - samba ~ Validate /etc/nsswitch.conf on Ubuntu 18.04 before overriding it
 - samba ~ Validate /etc/samba/smb.conf on Ubuntu 18.04 before overriding it
 - brew_odbc_conf - export should go into ~/.bashrc && ~/.bash_profile OR /etc/environment  ~ https://www.tecmint.com/set-unset-environment-variables-in-linux/
-- Fix witchesbrew installation script, append to ~/.bash_profile && ~/.bashrc

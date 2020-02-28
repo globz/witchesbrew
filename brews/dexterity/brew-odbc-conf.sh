@@ -16,8 +16,15 @@ function brew_odbc_conf() {
   cp $ODBC_INST $ODBC_DIR
 
   #ENV variables
-  export ODBCSYSINI=$ODBC_DIR
-  export ODBCINI=$ODBC_DIR/odbc.ini
+  #export ODBCSYSINI=$ODBC_DIR
+  #export ODBCINI=$ODBC_DIR/odbc.ini
+  echo "export ODBCSYSINI=$ODBC_DIR" | sudo tee -a ~/.bashrc
+  echo "export ODBCSYSINI=$ODBC_DIR" | sudo tee -a ~/.bash_profile
+  echo "export ODBCINI=$ODBC_DIR/odbc.ini" | sudo tee -a ~/.bashrc
+  echo "export ODBCINI=$ODBC_DIR/odbc.ini" | sudo tee -a ~/.bash_profile
+
+  source ~/.bashrc
+  source ~/.bash_profile
 
   #Create Hard symlink to /etc/
   #PHP reads this location by default
