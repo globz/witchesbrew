@@ -26,6 +26,7 @@ BREW_FAIL2BAN=true
 STRENGTH=false
 BREW_ARCHITECTURE=true
 BREW_SAMBA=true
+BREW_LOCALES=true
 
 function cauldron () {
 
@@ -130,6 +131,12 @@ function cauldron () {
     then
       source $DIR/brews/strength/brew-samba.sh
       brew_samba $ENV
+    fi
+
+    if [ "$BREW_LOCALES" == true ]
+    then
+      source $DIR/brews/strength/brew-locales.sh
+      brew_locales $ENV
     fi
 
   fi
