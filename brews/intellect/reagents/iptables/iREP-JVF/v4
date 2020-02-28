@@ -36,7 +36,7 @@
 -A INPUT -p tcp -s 10.1.1.32 --sport 1024:65535 --dport 20:65535 -m conntrack --ctstate NEW,ESTABLISHED -j ACCEPT
 
 # Allow incoming MySQL ODBC connection (Toronto Reporting)
--A INPUT -p tcp -s 10.1.1.241 --sport 1024:65535 --dport 3306 -m state --state NEW,ESTABLISHED -j ACCEPT
+-A INPUT -p tcp -s 10.1.1.241,10.1.1.21 --sport 1024:65535 --dport 3306 -m state --state NEW,ESTABLISHED -j ACCEPT
 
 # Drop incoming malformed NULL packets
 -A INPUT -p tcp --tcp-flags ALL NONE -j DROP

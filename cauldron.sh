@@ -20,10 +20,12 @@ BREW_ODBC_CONF=true
 INTELLECT=false
 BREW_CRONJOBS=true
 BREW_IPTABLES=true
+BREW_FAIL2BAN=true
 
 #brews/strength
 STRENGTH=false
 BREW_ARCHITECTURE=true
+BREW_SAMBA=true
 
 function cauldron () {
 
@@ -105,6 +107,12 @@ function cauldron () {
         brew_iptables $ENV
       fi
 
+      if [ "$BREW_FAIL2BAN" == true ]
+      then
+        source $DIR/brews/intellect/brew-fail2ban.sh
+        brew_fail2ban $ENV
+      fi
+
     fi
 
     if [ "$STRENGTH" == true ]
@@ -116,6 +124,12 @@ function cauldron () {
     then
       source $DIR/brews/strength/brew-architecture.sh
       brew_architecture $ENV
+    fi
+
+    if [ "$BREW_SAMBA" == true ]
+    then
+      source $DIR/brews/strength/brew-samba.sh
+      brew_samba $ENV
     fi
 
   fi

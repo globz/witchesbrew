@@ -3,7 +3,7 @@
 
 echo "Installing witchesbrew..."
 
-if grep -Fq "witchesbrew" ~/.bashrc
+if [ grep -Fq "witchesbrew" ~/.bashrc ] || [ grep -Fq "witchesbrew" ~/.bashrc_profile ];
 then
   echo "witchesbrew is already present in your ~/.bashrc configuration file."
   echo "remove it from ~/.bashrc in order to re-install||upgrade"
@@ -17,9 +17,14 @@ else
   }
 
   typeset -f >> ~/.bashrc
+  typeset -f >> ~/.bash_profile
 
-  echo "witchesbrew must update mlocate database..."
+  echo "witchesbrew will now update mlocate database..."
   sudo updatedb
-  source ~/.bashrc && exec bash
+
+  source ~/.bashrc
+  source ~/.bash_profile
+
+  echo "witchesbrew is now installed."
 
 fi
