@@ -17,7 +17,7 @@ function brew_php_tools() {
 
   if [ "$TOOL" == 1 ]
   then
-    ./$PHPTOOLS/tailPHP.sh
+    .$PHPTOOLS/tailPHP.sh
   fi
 
 }
