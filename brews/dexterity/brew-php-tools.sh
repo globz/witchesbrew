@@ -17,7 +17,8 @@ function brew_php_tools() {
 
   if [ "$TOOL" == 1 ]
   then
-    .$PHPTOOLS/tailPHP.sh
+    sudo chmod +x $PHPTOOLS/tailPHP.sh
+    $PHPTOOLS/tailPHP.sh
   fi
 
 }
