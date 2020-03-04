@@ -17,8 +17,7 @@ function brew_php_tools() {
 
   if [ "$TOOL" == 1 ]
   then
-    sudo chmod +x $PHPTOOLS/tailPHP.sh
-    $PHPTOOLS/tailPHP.sh
+    $PHPTOOLS/tailPHP.sh #executable flag set with git update-index --chmod=+x
   fi
 
 }
