@@ -1,7 +1,7 @@
 #!/bin/bash
 #iREP server - [php tools]
 
-function php_tools() {
+function brew_php_tools() {
 
   local ENV=$1
   local DIR=$(locate -br "^witchesbrew$")
