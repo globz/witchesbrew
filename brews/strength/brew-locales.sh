@@ -38,6 +38,6 @@ function brew_locales() {
   # LC_ALL=
 
 
-  echo "locales is now properly configured for ENV : $ENV ~ Please restart your terminal or logout in order to apply your new locale."
+  echo "locales are now properly configured for ENV : $ENV ~ Please restart your terminal or logout in order to apply your new locale."
 
 }

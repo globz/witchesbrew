@@ -15,3 +15,6 @@ TODO :
 - fail2ban apache-common patch will probably not be needed in Ubuntu 18.04 LTS
 - samba ~ Validate /etc/nsswitch.conf on Ubuntu 18.04 before overriding it
 - samba ~ Validate /etc/samba/smb.conf on Ubuntu 18.04 before overriding it
+- banner ~ Validate /etc/ssh/sshd_config did not change on Ubuntu 18.04
+- irep-backup.sh ~ Update to reflect changes of Ubuntu 18.04 & PHP7
+- Fix cauldron brews ordering

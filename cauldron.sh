@@ -27,6 +27,7 @@ STRENGTH=false
 BREW_ARCHITECTURE=true
 BREW_SAMBA=true
 BREW_LOCALES=true
+BREW_BANNER=true
 
 function cauldron () {
 
@@ -137,6 +138,12 @@ function cauldron () {
     then
       source $DIR/brews/strength/brew-locales.sh
       brew_locales $ENV
+    fi
+
+    if [ "$BREW_BANNER" == true ]
+    then
+      source $DIR/brews/strength/brew-banner.sh
+      brew_banner $ENV
     fi
 
   fi
