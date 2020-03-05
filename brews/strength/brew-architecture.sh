@@ -128,37 +128,16 @@ function brew_architecture() {
   #Apply proper ownership
   find $logs -exec $OwnerWWW {} \;
 
-  #iREP-toolshed permission
-  toolshed=/var/www/toolshed/
-  # $build $toolshed
-  #
-  # cd $toolshed
-  # touch agreementHistory.php
-  # touch assembler.php
-  # touch janitor.php
-  # touch odbc-fetcher.php
-  # touch irep-backup.sh
-  #
-  # #build /toolshed sub folders
-  # $build passphrase/
-  # $build tmp/
-  # $build trailBlazer/
-  #
-  # #Create empty files related to /toolshed/passphrase
-  # cd passphrase/
-  # touch wordlist
-  #
-  # #Create files related to /toolshed/trailBlazer
-  # cd ../trailBlazer
-  # touch trailBlazer.php
-  #
-  # #build /toolshed/trailBlazer sub folders
-  # $build buckets/
-  # $build logs/
-  # $build logs/error/
-  # $build logs/purge/
-  # $build logs/warning/
-  # $build parsers/
+  #iREP-toolshed folder structure & permission
+  toolshed=/var/www/toolshed
+
+  $build $toolshed/tmp/
+
+  $build $toolshed/trailBlazer/buckets/
+  $build $toolshed/trailBlazer/logs/
+  $build $toolshed/trailBlazer/logs/error/
+  $build $toolshed/trailBlazer/logs/purge/
+  $build $toolshed/trailBlazer/logs/warning/
 
   #Apply proper directories permission
   find $toolshed -type d -exec $perm0700 {} \;
