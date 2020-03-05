@@ -4,13 +4,13 @@
 #This script is in charge of creating the required environment in order for iREP to work properly.
 #Out of this hellish brewing will emerge a server properly configured and ready to operate a given iREP instance.
 
-#Cauldron default configuration
+#Cauldron default deployment configuration
 #The configuration below will be executed by default if no $BREW_RECIPE has been supplied!
+#Only brew from cauldron when deploying a new server, else simply make use of $BREW_RECIPE!
 
 #brews/dexterity
 DEXTERITY=false
 BREW_EMACS=true
-BREW_PHP_TOOLS=true
 BREW_WKHTMLTOPDF=true
 BREW_UNIXODBC=true
 BREW_ISERIES_ODBC=true
@@ -89,6 +89,12 @@ function cauldron () {
       then
         source $DIR/brews/dexterity/brew-odbc-conf.sh
         brew_odbc_conf $ENV
+      fi
+
+      if [ "$BREW_EMACS" == true ]
+      then
+        source $DIR/brews/dexterity/brew-emacs.sh
+        brew_emacs $ENV
       fi
 
     fi

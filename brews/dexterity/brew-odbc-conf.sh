@@ -8,13 +8,14 @@ function brew_odbc_conf() {
   local ENV=$1
   local DIR=$(locate -br "^witchesbrew$")
   local REAGENTS="$DIR/brews/dexterity/reagents"
-  local ODBC_INI=$REAGENTS/odbc-ini/iREP-$ENV
-  local ODBC_INST=$REAGENTS/odbc-ini/odbcinst.ini
-  local ODBC_DIR=/home/$USER/odbc-ini
+  local ODBC_INI="$REAGENTS/odbc-ini/iREP-$ENV/odbc.ini"
+  local ODBC_INST="$REAGENTS/odbc-ini/odbcinst.ini"
+  local ODBC_DIR="/home/$USER/odbc-ini"
 
   echo "Brewing ODBC configuration files..."
 
-  cp -R $ODBC_INI $ODBC_DIR
+  mkdir $ODBC_DIR
+  cp $ODBC_INI $ODBC_DIR
   cp $ODBC_INST $ODBC_DIR
 
   #ENV variables

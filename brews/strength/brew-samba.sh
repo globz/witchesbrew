@@ -7,13 +7,13 @@ function brew_samba() {
   local ENV=$1
   local DIR=$(locate -br "^witchesbrew$")
   local REAGENTS="$DIR/brews/strength/reagents"
-  local SMBCREDENTIALS=/home/$USER/.smbcredentials
-  local SAMBA_CONF=/etc/samba/smb.conf
-  local MOUNT_GP1070=/mnt/GP1070
-  local MOUNT_TRAILBLAZER=/mnt/trailBlazer
-  local MOUNT_WALMART=/mnt/trailBlazer/Walmart
-  local FSTAB_CONF=$REAGENTS/samba/iREP-$ENV/fstab_conf
-  local NSSWITCH_CONF=$REAGENTS/samba/nsswitch.conf
+  local SMBCREDENTIALS="/home/$USER/.smbcredentials"
+  local SAMBA_CONF="/etc/samba/smb.conf"
+  local MOUNT_GP1070="/mnt/GP1070"
+  local MOUNT_TRAILBLAZER="/mnt/trailBlazer"
+  local MOUNT_WALMART="/mnt/trailBlazer/Walmart"
+  local FSTAB_CONF="$REAGENTS/samba/iREP-$ENV/fstab_conf"
+  local NSSWITCH_CONF="$REAGENTS/samba/nsswitch.conf"
 
   echo "Brewing samba..."
 

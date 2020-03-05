@@ -128,43 +128,46 @@ function brew_architecture() {
   #Apply proper ownership
   find $logs -exec $OwnerWWW {} \;
 
-  #build /updater/ folder structure
-  updater=/var/www/updater/
-  $build $updater
-
-  cd $updater
-  touch agreementHistory.php
-  touch assembler.php
-  touch janitor.php
-  touch odbc-fetcher.php
-  touch irep-backup.sh
-
-  #build /updater sub folders
-  $build passphrase/
-  $build tmp/
-  $build trailBlazer/
-
-  #Create empty files related to /updater/passphrase
-  cd passphrase/
-  touch wordlist
-
-  #Create files related to /updater/trailBlazer
-  cd ../trailBlazer
-  touch trailBlazer.php
-
-  #build /updater/trailBlazer sub folders
-  $build buckets/
-  $build logs/
-  $build parsers/
+  #iREP-toolshed permission
+  toolshed=/var/www/toolshed/
+  # $build $toolshed
+  #
+  # cd $toolshed
+  # touch agreementHistory.php
+  # touch assembler.php
+  # touch janitor.php
+  # touch odbc-fetcher.php
+  # touch irep-backup.sh
+  #
+  # #build /toolshed sub folders
+  # $build passphrase/
+  # $build tmp/
+  # $build trailBlazer/
+  #
+  # #Create empty files related to /toolshed/passphrase
+  # cd passphrase/
+  # touch wordlist
+  #
+  # #Create files related to /toolshed/trailBlazer
+  # cd ../trailBlazer
+  # touch trailBlazer.php
+  #
+  # #build /toolshed/trailBlazer sub folders
+  # $build buckets/
+  # $build logs/
+  # $build logs/error/
+  # $build logs/purge/
+  # $build logs/warning/
+  # $build parsers/
 
   #Apply proper directories permission
-  find $updater -type d -exec $perm0700 {} \;
+  find $toolshed -type d -exec $perm0700 {} \;
 
   #Apply proper files permission - skip over directories "/tmp" & "trailBlazer/logs"
-  find $updater -type d -name "tmp" -prune -o -type d -name "logs" -prune -o -type f -exec $perm0700 {} \;
+  find $toolshed -type d -name "tmp" -prune -o -type d -name "logs" -prune -o -type f -exec $perm0700 {} \;
 
   #Apply proper ownership
-  find $updater -type d -name "tmp" -prune -o -type d -name "logs" -prune -o -exec $Owner {} \;
+  find $toolshed -type d -name "tmp" -prune -o -type d -name "logs" -prune -o -exec $Owner {} \;
 
   #build /css/ folder structure
   css=/var/www/irep/css/

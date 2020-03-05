@@ -9,9 +9,9 @@ function brew_fail2ban() {
   local ENV=$1
   local DIR=$(locate -br "^witchesbrew$")
   local REAGENTS="$DIR/brews/intellect/reagents"
-  local JAIL_LOCAL=$REAGENTS/fail2ban/iREP-$ENV/jail.local
-  local iREP_JAIL_CONF=$REAGENTS/fail2ban/jails/irep-auth.conf
-  local APACHE_COMMON_JAIL_CONF=$REAGENTS/fail2ban/jails/apache-common.conf #TODO validate if needed or not
+  local JAIL_LOCAL="$REAGENTS/fail2ban/iREP-$ENV/jail.local"
+  local iREP_JAIL_CONF="$REAGENTS/fail2ban/jails/irep-auth.conf"
+  local APACHE_COMMON_JAIL_CONF="$REAGENTS/fail2ban/jails/apache-common.conf" #TODO validate if needed or not
 
   echo "Brewing fail2ban..."
 

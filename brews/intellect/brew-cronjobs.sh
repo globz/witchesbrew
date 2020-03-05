@@ -12,13 +12,13 @@ function brew_cronjobs() {
   if [ "$ENV" == "MTL" ]
   then
   crontab -u irep -r
-  crontab -u irep -l | { cat; echo "20 4 * * * /usr/bin/php /var/www/updater/janitor.php > /var/www/logs/janitor.log 2>&1"; } | sort - | uniq - | crontab -
-  crontab -u irep -l | { cat; echo "30 4 * * * /usr/bin/php /var/www/updater/odbc-fetcher.php > /var/www/logs/odbc-fetcher.log 2>&1"; } | sort - | uniq - | crontab -
-  crontab -u irep -l | { cat; echo "40 4 * * * /usr/bin/php /var/www/updater/agreementHistory.php > /var/www/logs/agreementHistory.log 2>&1"; } | sort - | uniq - | crontab -
+  crontab -u irep -l | { cat; echo "20 4 * * * /usr/bin/php /var/www/toolshed/janitor.php > /var/www/logs/janitor.log 2>&1"; } | sort - | uniq - | crontab -
+  crontab -u irep -l | { cat; echo "30 4 * * * /usr/bin/php /var/www/toolshed/odbc-fetcher.php > /var/www/logs/odbc-fetcher.log 2>&1"; } | sort - | uniq - | crontab -
+  crontab -u irep -l | { cat; echo "40 4 * * * /usr/bin/php /var/www/toolshed/agreementHistory.php > /var/www/logs/agreementHistory.log 2>&1"; } | sort - | uniq - | crontab -
   crontab -u irep -l | { cat; echo "50 4 * * * /usr/bin/mysqldump-secure --cron 2> /var/www/logs/mysqldump.log"; } | sort - | uniq - | crontab -
   crontab -u irep -l | { cat; echo "00 5 * * * /bin/sh $REAGENTS/backup/iREP-MTL/irep-backup.sh > /var/www/logs/irep-backup.log 2>&1"; } | sort - | uniq - | crontab -
-  crontab -u irep -l | { cat; echo "30 5 * * * /usr/bin/php /var/www/updater/janitor.php > /var/www/logs/janitor.log 2>&1"; } | sort - | uniq - | crontab -
-  crontab -u irep -l | { cat; echo "10,30,50 * * * * /usr/bin/php /var/www/updater/assembler.php > /var/www/logs/assembler.log 2>&1"; } | sort - | uniq - | crontab -
+  crontab -u irep -l | { cat; echo "30 5 * * * /usr/bin/php /var/www/toolshed/janitor.php > /var/www/logs/janitor.log 2>&1"; } | sort - | uniq - | crontab -
+  crontab -u irep -l | { cat; echo "10,30,50 * * * * /usr/bin/php /var/www/toolshed/assembler.php > /var/www/logs/assembler.log 2>&1"; } | sort - | uniq - | crontab -
   echo "cronjobs are now installed..."
   crontab -u irep -l
 
@@ -34,11 +34,11 @@ function brew_cronjobs() {
   elif [ "$ENV" == "InDev" ]
   then
   crontab -u dev -r
-  crontab -u dev -l | { cat; echo "10 05 * * * /usr/bin/php /var/www/updater/janitor.php > /var/www/logs/janitor.log 2>&1"; } | sort - | uniq - | crontab -
-  crontab -u dev -l | { cat; echo "15 05 * * * /usr/bin/php /var/www/updater/odbc-fetcher.php > /var/www/logs/odbc-fetcher.log 2>&1"; } | sort - | uniq - | crontab -
-  crontab -u dev -l | { cat; echo "20 05 * * * /usr/bin/php /var/www/updater/agreementHistory.php > /var/www/logs/agreementHistory.log 2>&1"; } | sort - | uniq - | crontab -
-  crontab -u dev -l | { cat; echo "30 05 * * * /usr/bin/php /var/www/updater/janitor.php > /var/www/logs/janitor.log 2>&1"; } | sort - | uniq - | crontab -
-  #crontab -u dev -l | { cat; echo "*/5 * * * * /usr/bin/php /var/www/updater/trailBlazer/trailBlazer.php > /var/www/logs/trailBlazer.log 2>&1"; } | sort - | uniq - | crontab - #test & remove
+  crontab -u dev -l | { cat; echo "10 05 * * * /usr/bin/php /var/www/toolshed/janitor.php > /var/www/logs/janitor.log 2>&1"; } | sort - | uniq - | crontab -
+  crontab -u dev -l | { cat; echo "15 05 * * * /usr/bin/php /var/www/toolshed/odbc-fetcher.php > /var/www/logs/odbc-fetcher.log 2>&1"; } | sort - | uniq - | crontab -
+  crontab -u dev -l | { cat; echo "20 05 * * * /usr/bin/php /var/www/toolshed/agreementHistory.php > /var/www/logs/agreementHistory.log 2>&1"; } | sort - | uniq - | crontab -
+  crontab -u dev -l | { cat; echo "30 05 * * * /usr/bin/php /var/www/toolshed/janitor.php > /var/www/logs/janitor.log 2>&1"; } | sort - | uniq - | crontab -
+  #crontab -u dev -l | { cat; echo "*/5 * * * * /usr/bin/php /var/www/toolshed/trailBlazer/trailBlazer.php > /var/www/logs/trailBlazer.log 2>&1"; } | sort - | uniq - | crontab - #test & remove
   echo "cronjobs are now installed..."
   crontab -u dev -l
 
@@ -51,15 +51,15 @@ function brew_cronjobs() {
   elif [ "$ENV" == "JVF" ]
   then
   crontab -u irep -r
-  crontab -u irep -l | { cat; echo "20 4 * * * /usr/bin/php /var/www/updater/janitor.php > /var/www/logs/janitor.log 2>&1"; } | sort - | uniq - | crontab -
-  crontab -u irep -l | { cat; echo "10 17 * * * /usr/bin/php /var/www/updater/odbc-fetcher.php > /var/www/logs/odbc-fetcher.log 2>&1"; } | sort - | uniq - | crontab -
-  crontab -u irep -l | { cat; echo "35 4 * * * /usr/bin/php /var/www/updater/odbc-fetcher.php > /var/www/logs/odbc-fetcher.log 2>&1"; } | sort - | uniq - | crontab -
-  crontab -u irep -l | { cat; echo "40 4 * * * /usr/bin/php /var/www/updater/agreementHistory.php > /var/www/logs/agreementHistory.log 2>&1"; } | sort - | uniq - | crontab -
+  crontab -u irep -l | { cat; echo "20 4 * * * /usr/bin/php /var/www/toolshed/janitor.php > /var/www/logs/janitor.log 2>&1"; } | sort - | uniq - | crontab -
+  crontab -u irep -l | { cat; echo "10 17 * * * /usr/bin/php /var/www/toolshed/odbc-fetcher.php > /var/www/logs/odbc-fetcher.log 2>&1"; } | sort - | uniq - | crontab -
+  crontab -u irep -l | { cat; echo "35 4 * * * /usr/bin/php /var/www/toolshed/odbc-fetcher.php > /var/www/logs/odbc-fetcher.log 2>&1"; } | sort - | uniq - | crontab -
+  crontab -u irep -l | { cat; echo "40 4 * * * /usr/bin/php /var/www/toolshed/agreementHistory.php > /var/www/logs/agreementHistory.log 2>&1"; } | sort - | uniq - | crontab -
   crontab -u irep -l | { cat; echo "50 4 * * * /usr/bin/mysqldump-secure --cron 2> /var/www/logs/mysqldump.log"; } | sort - | uniq - | crontab -
   crontab -u irep -l | { cat; echo "00 5 * * * /bin/sh $REAGENTS/backup/iREP-JVF/irep-backup.sh > /var/www/logs/irep-backup.log 2>&1"; } | sort - | uniq - | crontab -
-  crontab -u irep -l | { cat; echo "30 5 * * * /usr/bin/php /var/www/updater/janitor.php > /var/www/logs/janitor.log 2>&1"; } | sort - | uniq - | crontab -
-  crontab -u irep -l | { cat; echo "*/10 * * * * /usr/bin/php /var/www/updater/assembler.php > /var/www/logs/assembler.log 2>&1"; } | sort - | uniq - | crontab -
-  crontab -u irep -l | { cat; echo "*/5 * * * * /usr/bin/php /var/www/updater/trailBlazer/trailBlazer.php > /var/www/logs/trailBlazer.log 2>&1"; } | sort - | uniq - | crontab -
+  crontab -u irep -l | { cat; echo "30 5 * * * /usr/bin/php /var/www/toolshed/janitor.php > /var/www/logs/janitor.log 2>&1"; } | sort - | uniq - | crontab -
+  crontab -u irep -l | { cat; echo "*/10 * * * * /usr/bin/php /var/www/toolshed/assembler.php > /var/www/logs/assembler.log 2>&1"; } | sort - | uniq - | crontab -
+  crontab -u irep -l | { cat; echo "*/5 * * * * /usr/bin/php /var/www/toolshed/trailBlazer/trailBlazer.php > /var/www/logs/trailBlazer.log 2>&1"; } | sort - | uniq - | crontab -
   echo "cronjobs are now installed..."
   crontab -u irep -l
 
