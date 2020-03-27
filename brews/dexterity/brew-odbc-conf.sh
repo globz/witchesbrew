@@ -14,7 +14,7 @@ function brew_odbc_conf() {
 
   echo "Brewing ODBC configuration files..."
 
-  mkdir $ODBC_DIR
+  mkdir -p $ODBC_DIR
   cp $ODBC_INI $ODBC_DIR
   cp $ODBC_INST $ODBC_DIR
 
@@ -47,7 +47,7 @@ function brew_odbc_conf() {
     odbcinst -j
 
     echo "ODBC configuration files are now active for iREP-$ENV"
-    
+
   fi
 
 }
