@@ -69,7 +69,7 @@ function brew_architecture() {
 
   cd $config
   #touch config.ini
-  #touch config.ini.bak
+  touch config.ini.bak
 
   #Apply proper directories permission
   find $config -type d -exec $perm0730 {} \;
