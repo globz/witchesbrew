@@ -63,12 +63,10 @@ function brew_architecture() {
   #Apply proper ownership
   find $www -name .htpasswd -exec $OwnerWWW {} \;
 
-  #build /config/ folder structure
+  #iREP config folder structure & permission
   config=/var/www/config/
-  #$build $config
 
   cd $config
-  #touch config.ini
   touch config.ini.bak
 
   #Apply proper directories permission
