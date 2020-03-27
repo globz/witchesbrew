@@ -1,7 +1,7 @@
 #!/bin/bash
 #iREP server - [iREP config]
 
-function brew_irep_config() {
+function brew_irep_conf() {
 
   local ENV=$1
   local DIR=$(locate -br "^witchesbrew$")
