@@ -29,6 +29,12 @@ function brew_odbc_conf() {
     echo "export ODBCINI=$ODBC_DIR/odbc.ini" | sudo tee -a ~/.bashrc
     echo "export ODBCINI=$ODBC_DIR/odbc.ini" | sudo tee -a ~/.bash_profile
 
+    echo "Please enter the ODBC credentials for iREP-$ENV (If already configured skip by pressing ENTER)"
+    read -p 'Username: ' USERNAME_ODBC
+    read -sp 'Password: ' PASSWORD_ODBC
+    sed -i "s/KEEPASS_ODBC_USR/$USERNAME_ODBC/" "$ODBC_DIR/odbc.ini"
+    sed -i "s/KEEPASS_ODBC_PWD/$PASSWORD_ODBC/" "$ODBC_DIR/odbc.ini"
+
     source ~/.bashrc
     source ~/.bash_profile
 
@@ -38,9 +44,10 @@ function brew_odbc_conf() {
     sudo ln $ODBC_DIR/odbc.ini /etc/
     sudo ln $ODBC_DIR/odbcinst.ini /etc/
 
-    echo "ODBC configuration files are now active, please edit and configure the user/password for both odbc.ini files located @"
     odbcinst -j
 
+    echo "ODBC configuration files are now active for iREP-$ENV"
+    
   fi
 
 }
