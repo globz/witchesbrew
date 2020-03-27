@@ -65,11 +65,11 @@ function brew_architecture() {
 
   #build /config/ folder structure
   config=/var/www/config/
-  $build $config
+  #$build $config
 
   cd $config
-  touch config.ini
-  touch config.ini.bak
+  #touch config.ini
+  #touch config.ini.bak
 
   #Apply proper directories permission
   find $config -type d -exec $perm0730 {} \;
