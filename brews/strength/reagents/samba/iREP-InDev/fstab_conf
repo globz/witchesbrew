@@ -1,4 +1,0 @@
-#AS400 shared folder - GP1070
-//10.1.1.10/GP1070T /mnt/GP1070 cifs uid=dev,gid=dev,auto,comment=systemd.automount,credentials=/home/dev/.smbcredentials,sec=ntlm,noserverino,rw,dir_mode=0700,file_mode=0700   0 0
-#AS400 shared folder - trailBlazer/Walmart
-//10.1.1.10/IREP/WALMART /mnt/trailBlazer/Walmart cifs uid=dev,gid=dev,auto,comment=systemd.automount,credentials=/home/dev/.smbcredentials,sec=ntlm,noserverino,rw,dir_mode=0700,file_mode=0700   0 0

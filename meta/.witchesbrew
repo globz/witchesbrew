@@ -1,0 +1,19 @@
+[GRIMOIRE]
+:name:
+Name of my Grimoire
+:version:
+v0.1
+:description:
+Grimoire description
+[/]
+
+[REAGENT]
+:name:
+name-of-my-reagent
+:version:
+v0.1
+:description:
+Reagent description
+:source:
+name_of_my_reagent.sh
+[/]
