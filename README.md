@@ -12,4 +12,4 @@ application infrastructure and architecture.
 
 Installation :
 - git clone https://github.com/globz/witchesbrew.git witchesbrew
-- cd witchesbrew/ && sudo ./install.sh
+- cd witchesbrew/ && ./install.sh
