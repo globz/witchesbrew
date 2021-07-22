@@ -6,7 +6,6 @@ cauldron()
     local OPTIND opt
     local wd=$(pwd)
     local wb=$(readlink -f $HOME/bin/witchesbrew_wd)
-    #local wb=$(locate -br "^witchesbrew$")
 
     # =_spellpouch=
     source "${wb}/spells/_spellpouch.sh"
@@ -56,7 +55,7 @@ EOF
         # Invoke grimoire
         grimoire)
             if ! test -f "${wd}/.witchesbrew"; then
-                _spellpouch -p "grimoire" -e "${wd}" "${wb}"                
+                _spellpouch -p "grimoire" -e "${wd}" "${wb}"
             else
                 gawk '/GRIMOIRE/,/\// { print "\033[35m"$0 }' "${wd}/.witchesbrew" && return
             fi

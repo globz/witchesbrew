@@ -43,7 +43,7 @@ records_by_name()
 
     local name=${1:-UNUSED} named_record
 
-    named_record=$(gawk -v _name="$name" -F: 'BEGIN { RS="\\[/\\]"; regex_n=":name:\\n"(_name); };
+    named_record=$(gawk -v _name="$name" -F: 'BEGIN { RS="\\[/\\]"; regex_n=":name:\\n"_name"\\n"; };
     $0 ~ regex_n { name[NR]; } NR in name' .witchesbrew)
     
     echo  "${named_record}"
@@ -116,7 +116,7 @@ field_by_named_category()
     
     named_category_record=$(echo "${category_record}" | gawk \
     -v _named_field_value="$named_field_value" -v _category="$category" -F: '
-    BEGIN { RS="\\["_category"\\]"; regex_n_f=":name:\\n"(_named_field_value); } 
+    BEGIN { RS="\\["_category"\\]"; regex_n_f=":name:\\n"_named_field_value"\\n"; } 
     { if ($0 ~ regex_n_f) { record[NR]; } } NR in record')
 
     named_category_field_value=$(field_by_named_record "${named_category_record}" "${field}")

@@ -5,10 +5,10 @@
 # over dashes
 mix()
 {
- 
+
     local reagent=$1 wd=$2 env=$3 r_src src_sh src
     local wb=$(readlink -f $HOME/bin/witchesbrew_wd)
-    
+
     source "${wb}/spells/_spellpouch.sh"
 
     # Find the reagent source code
@@ -23,24 +23,18 @@ mix()
         echo -e "\033[31merror :\e[0m Use option (-w) if you need an escape hatch!" && return 1
     fi
 
-    #echo "${#r_src}" #length does not match
-    #echo "${#src_sh}" #length does not match
-    #echo "${r_src}"
-    #echo "${src_sh}"
-    #echo "${src}"
-
-    
 }
 
 # mix external has a more lax attitude and does not enforce the sole use of
 # shell script, user must provide the working directory (-w) of the external grimoire
 mix_external()
 {
-    
+
     local reagent=$1 wd=$2 env=$3
 
     echo "mix_external"
     echo "${reagent}"
     echo "${wd}"
     echo "${env}"
+
 }

@@ -7,10 +7,10 @@ list_grimoire()
 
     case "${target}" in
         REAGENTS)
-            gawk '/REAGENT/,/\// { print "\033[35m"$0 }' "${wd}/.witchesbrew" && return
+            gawk '/^\[REAGENT\]$/,/\// { print "\033[35m"$0 }' "${wd}/.witchesbrew" && return
             ;;
         RECIPES)
-            gawk '/RECIPE/,/\// { print "\033[35m"$0 }' "${wd}/.witchesbrew" && return
+            gawk '/^\[RECIPE\]$/,/\// { print "\033[35m"$0 }' "${wd}/.witchesbrew" && return
             ;;
     esac
     
