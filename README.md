@@ -8,7 +8,7 @@ shell scripts.
 
 Armed with two simple commands it becomes easy to mix a single script with the
 host environment or carefully brew them in such a way that they can deploy a complex
-application infrastructure and architecture.
+application architecture.
 
 Installation :
 - git clone https://github.com/globz/witchesbrew.git witchesbrew
