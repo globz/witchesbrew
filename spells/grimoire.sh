@@ -23,15 +23,14 @@ grimoire()
             touch "${wd}/spells/spellpouch.sh"
 
             # push template for (.witchesbrew)
-            cp "${wb}/meta/.witchesbrew" "${wd}/.witchesbrew"
+            cp -f "${wb}/meta/.witchesbrew" "${wd}/.witchesbrew"
             # push source code (.witchesbrew.env.sh)
-            cp "${wb}/meta/.witchesbrew.env.sh" "${wd}/.witchesbrew.env.sh"
+            cp -f "${wb}/meta/.witchesbrew.env.sh" "${wd}/.witchesbrew.env.sh"
             # push source code (spellpouch.sh)
-            cp "${wb}/meta/spellpouch.sh" "${wd}/spells/spellpouch.sh"
+            cp -f "${wb}/meta/spellpouch.sh" "${wd}/spells/spellpouch.sh"
             # push source code (elementIn.sh)
-            cp "${wb}/meta/elementIn.sh" "${wd}/spells/elementIn.sh"
-            
-            
+            cp -f "${wb}/meta/elementIn.sh" "${wd}/spells/elementIn.sh"
+                        
             echo "witchesbrew have now claim this directory and made it into a grimoire!" && ls -a
             ;; 
         n|N) echo -e "\nAborting." ;; 
