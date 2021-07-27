@@ -17,3 +17,14 @@ Reagent description
 :source:
 name_of_my_reagent.sh
 [/]
+
+[RECIPE]
+:name:
+name-of-my-recipe
+:version:
+v0.1
+:description:
+Recipe description
+:source:
+name_of_my_recipe.sh
+[/]
