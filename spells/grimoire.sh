@@ -10,9 +10,6 @@ grimoire()
 
     case $confirm in  
         y|Y)
-            # create configuration files
-            touch "${wd}/.witchesbrew"           
-            touch "${wd}/.witchesbrew.env.sh"    
 
             # create reagents & recipes directory
             mkdir "${wd}/reagents"
@@ -20,16 +17,15 @@ grimoire()
 
             # create spells directory
             mkdir "${wd}/spells"
-            touch "${wd}/spells/spellpouch.sh"
 
             # push template for (.witchesbrew)
-            cp -f "${wb}/meta/.witchesbrew" "${wd}/.witchesbrew"
+            cp -f -i "${wb}/meta/.witchesbrew" "${wd}/.witchesbrew"
             # push source code (.witchesbrew.env.sh)
-            cp -f "${wb}/meta/.witchesbrew.env.sh" "${wd}/.witchesbrew.env.sh"
+            cp -f -i "${wb}/meta/.witchesbrew.env.sh" "${wd}/.witchesbrew.env.sh"
             # push source code (spellpouch.sh)
-            cp -f "${wb}/meta/spellpouch.sh" "${wd}/spells/spellpouch.sh"
+            cp -f -i "${wb}/meta/spellpouch.sh" "${wd}/spells/spellpouch.sh"
             # push source code (elementIn.sh)
-            cp -f "${wb}/meta/elementIn.sh" "${wd}/spells/elementIn.sh"
+            cp -f -i "${wb}/meta/elementIn.sh" "${wd}/spells/elementIn.sh"
                         
             echo "witchesbrew have now claim this directory and made it into a grimoire!" && ls -a
             ;; 
