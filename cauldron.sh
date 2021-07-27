@@ -119,15 +119,12 @@ EOF
         mix)
             _spellpouch -p "is_wd" -e "${wd}" || return
             local reagent=$1; shift
-            while getopts "e:w:" opt; do
+            while getopts "e:" opt; do
                 case "${opt}" in
                     e)
                         local env="${OPTARG}"
                         _spellpouch -p ".witchesbrew.env" -s "validate_env" -w "${wd}/" || return
                         echo "mix environment: [${env}]"
-                        ;;
-                    w)
-                        local external_directory="${OPTARG}"
                         ;;
                     \?)
                         echo "Invalid Option: -$OPTARG" 1>&2
@@ -138,13 +135,36 @@ EOF
                 esac
             done
 
-            # Invoke from mix or mix_external based on -w option
-            if [[ ! -z "${external_directory}" ]]
-            then
-                _spellpouch -p "mix" -s "mix_external" -e "${reagent}" "${external_directory}" "${env}"
-            else
-                _spellpouch -p "mix" -e "${reagent}" "${wd}" "${env}"
-            fi
+            # Invoke brew
+            _spellpouch -p "mix" -e "${reagent}" "${wd}" "${env}"
+
+            shift $((OPTIND -1))
+            ;;
+    esac
+
+    case "$command" in
+        # Parse options to the brew command
+        brew)
+            _spellpouch -p "is_wd" -e "${wd}" || return
+            local recipe=$1; shift
+            while getopts "e:" opt; do
+                case "${opt}" in
+                    e)
+                        local env="${OPTARG}"
+                        _spellpouch -p ".witchesbrew.env" -s "validate_env" -w "${wd}/" || return
+                        echo "brew environment: [${env}]"
+                        ;;
+                    \?)
+                        echo "Invalid Option: -$OPTARG" 1>&2
+                        ;;
+                    :)
+                        echo "Invalid Option: -$OPTARG requires an argument" 1>&2
+                        ;;
+                esac
+            done
+
+            # Invoke brew
+            _spellpouch -p "brew" -e "${recipe}" "${wd}" "${env}"
 
             shift $((OPTIND -1))
             ;;
