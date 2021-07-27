@@ -8,20 +8,16 @@ spellpouch()
         case "${opt}" in
             p)
                 local pouch="${OPTARG}"
-                echo "spellpouch: [${pouch}]"
                 ;;
             w)
                 local external_grimoire="${OPTARG}"
-                echo "casting from external grimoire: [${external_grimoire}]"
                 ;;
             s)
                 local spell="${OPTARG}"
-                echo "casting spell: [${spell}]"
                 ;;
             e)
                 shift $((OPTIND -1))
                 local env="${@}"
-                echo "casting with external environment: [${env}]"
                 ;;
             \?)
                 echo "Invalid Option: -$OPTARG" 1>&2
@@ -32,7 +28,7 @@ spellpouch()
         esac
     done
     
-    # invoke from witchesbrew/spells or external grimoire
+    # invoke from grimoire/spells or external grimoire
     if [[ -z $external_grimoire && ! -z $pouch ]]
     then
         _pouch=$(<"${wd}/spells/${pouch}.sh")
@@ -57,7 +53,7 @@ spellpouch()
         then
             echo -e "\033[31mfizzled :\e[0m your spellpouch fell on the ground..." && return 1
         else
-            echo -e "\033[31mfizzled :\e[0m spellpouch failed to cast $pouch, $spell" && return 1
+            echo -e "\033[31mfizzled :\e[0m spellpouch failed to cast $pouch" && return 1
         fi
     fi
     
