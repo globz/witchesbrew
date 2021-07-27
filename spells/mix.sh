@@ -1,8 +1,8 @@
 #!/bin/bash
 
-# mix by default will look for /reagents/ @ user grimoire ($wd)
-# mix will enforce shell script execution and function name must use underscore
-# over dashes
+# mix look for /reagents/ @ user grimoire ($wd)
+# mix enforce shell script execution 
+# mix enforce function name to use underscore over dashes
 mix()
 {
 
@@ -22,19 +22,5 @@ mix()
     else
         echo -e "\033[31merror :\e[0m Use option (-w) if you need an escape hatch!" && return 1
     fi
-
-}
-
-# mix external has a more lax attitude and does not enforce the sole use of
-# shell script, user must provide the working directory (-w) of the external grimoire
-mix_external()
-{
-
-    local reagent=$1 wd=$2 env=$3
-
-    echo "mix_external"
-    echo "${reagent}"
-    echo "${wd}"
-    echo "${env}"
 
 }
