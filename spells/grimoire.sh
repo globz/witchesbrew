@@ -26,7 +26,9 @@ grimoire()
             cp -f -i "${wb}/meta/spellpouch.sh" "${wd}/spells/spellpouch.sh"
             # push source code (elementIn.sh)
             cp -f -i "${wb}/meta/elementIn.sh" "${wd}/spells/elementIn.sh"
-                        
+            # push source code (dialog_prompt.sh)
+            cp -f -i "${wb}/meta/dialog_prompt.sh" "${wd}/spells/dialog_prompt.sh"
+            
             echo "witchesbrew have now claim this directory and made it into a grimoire!" && ls -a
             ;; 
         n|N) echo -e "\nAborting." ;; 
