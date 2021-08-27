@@ -40,6 +40,7 @@ EOF
                 echo "Usage:"
                 echo "    witchesbrew -h                      Display this help message."
                 echo "    witchesbrew grimoire                Instantiate a grimoire directory or display existing details."
+                echo "    witchesbrew example [-a|r]          Add or remove example files [REAGENT] & [RECIPE]."
                 echo "    witchesbrew study [-g|r] <name>     Study target reagent(-g) or recipe(-r)."
                 echo "    witchesbrew list [-g|r]             List available reagents(-g) or recipes(-r)."
                 echo "    witchesbrew mix <reagent> -e <env>  Mix reagent with host environment."
@@ -59,6 +60,27 @@ EOF
             else
                 gawk '/GRIMOIRE/,/\// { print "\033[35m"$0 }' "${wd}/.witchesbrew" && return
             fi
+            ;;
+    esac
+
+    case "$command" in
+        # Parse options to the example command
+        example)
+            while getopts ":ar" opt; do
+                case "${opt}" in
+                    a)
+                        _spellpouch -p "example" -s "example_add" -e "${wd}" "${wb}"
+                        ;;
+                    r)
+                        _spellpouch -p "example" -s "example_remove" -e "${wd}" "${wb}"
+                        ;;
+                     \?)
+                        echo "Invalid Option: -$OPTARG" 1>&2
+                        ;;
+                esac
+            done
+
+            shift $((OPTIND -1))
             ;;
     esac
 
@@ -104,9 +126,6 @@ EOF
                     \?)
                         echo "Invalid Option: -$OPTARG" 1>&2
                         ;;
-                    :)
-                        echo "Invalid Option: -$OPTARG requires an argument" 1>&2
-                        ;;
                 esac
             done
 
@@ -135,8 +154,8 @@ EOF
                 esac
             done
 
-            # Invoke brew
-            _spellpouch -p "mix" -e "${reagent}" "${wd}" "${env}"
+            # Invoke mix & update optional fields
+            _spellpouch -p "mix" -e "${reagent}" "${wd}" "${env}" && _spellpouch -p "opt_fields" -e "${reagent}" "REAGENT" "${wd}"
 
             shift $((OPTIND -1))
             ;;
@@ -163,8 +182,8 @@ EOF
                 esac
             done
 
-            # Invoke brew
-            _spellpouch -p "brew" -e "${recipe}" "${wd}" "${env}"
+            # Invoke brew & update optional fields
+            _spellpouch -p "brew" -e "${recipe}" "${wd}" "${env}" && _spellpouch -p "opt_fields" -e "${recipe}" "RECIPE" "${wd}"
 
             shift $((OPTIND -1))
             ;;

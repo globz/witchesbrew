@@ -1,6 +1,6 @@
 [GRIMOIRE]
 :name:
-Name of my Grimoire
+example-grimoire
 :version:
 v0.1
 :description:
@@ -9,22 +9,24 @@ Grimoire description
 
 [REAGENT]
 :name:
-name-of-my-reagent
+example-reagent
 :version:
 v0.1
 :description:
 Reagent description
 :source:
-name_of_my_reagent.sh
+example_reagent.sh
+:executed:
 [/]
 
 [RECIPE]
 :name:
-name-of-my-recipe
+example-recipe
 :version:
 v0.1
 :description:
 Recipe description
 :source:
-name_of_my_recipe.sh
+example_recipe.sh
+:installed:
 [/]

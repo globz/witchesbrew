@@ -20,7 +20,7 @@ mix()
         src=$(echo "${src_sh}" | gawk '/\.sh$/ { sub(/\.sh$/, "") } { print }' | tr '-' '_')
         _spellpouch -p "${src}" -w "${wd}/reagents/${reagent}" -e "${env}"
     else
-        echo -e "\033[31merror :\e[0m Use option (-w) if you need an escape hatch!" && return 1
+        echo -e "\033[31merror :\e[0m Could not mix requested reagent!" && return 1
     fi
 
 }

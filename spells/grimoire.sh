@@ -6,6 +6,8 @@ grimoire()
     local wd=$1
     local wb=$2
     
+    source "${wb}/spells/_spellpouch.sh"
+    
     read -p 'witchesbrew is about to claim this directory and turn it into a grimoire, are you sure? (y/n) ' confirm
 
     case $confirm in  
@@ -28,11 +30,16 @@ grimoire()
             cp -f -i "${wb}/meta/elementIn.sh" "${wd}/spells/elementIn.sh"
             # push source code (dialog_prompt.sh)
             cp -f -i "${wb}/meta/dialog_prompt.sh" "${wd}/spells/dialog_prompt.sh"
+
+            # Prompt user for adding example files
+            _spellpouch -p "example" -s "example_add" -e "${wd}" "${wb}"
             
-            echo "witchesbrew have now claim this directory and made it into a grimoire!" && ls -a
-            ;; 
+            echo -e "witchesbrew have now claim this directory and made it into a grimoire!" && ls -a 
+            ;;
+        
         n|N) echo -e "\nAborting." ;; 
-        *) echo "this is confusing..." ;; 
+        *) echo "this is confusing..." ;;
+        
     esac
           
 }

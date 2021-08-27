@@ -20,7 +20,7 @@ brew()
         src=$(echo "${src_sh}" | gawk '/\.sh$/ { sub(/\.sh$/, "") } { print }' | tr '-' '_')
         _spellpouch -p "${src}" -w "${wd}/recipes/${recipe}" -e "${env}"
     else
-        echo -e "\033[31merror :\e[0m something went wrong!" && return 1
+        echo -e "\033[31merror :\e[0m Could not brew requested recipe!" && return 1
     fi
 
 }
