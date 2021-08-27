@@ -40,7 +40,7 @@ EOF
                 echo "Usage:"
                 echo "    witchesbrew -h                      Display this help message."
                 echo "    witchesbrew grimoire                Instantiate a grimoire directory or display existing details."
-                echo "    witchesbrew example [-a|r]          Add or remove example files [REAGENT] & [RECIPE]."
+                echo "    witchesbrew example [-a|r]          Add(-a) or remove(-r) example files [REAGENT] & [RECIPE]."
                 echo "    witchesbrew study [-g|r] <name>     Study target reagent(-g) or recipe(-r)."
                 echo "    witchesbrew list [-g|r]             List available reagents(-g) or recipes(-r)."
                 echo "    witchesbrew mix <reagent> -e <env>  Mix reagent with host environment."
