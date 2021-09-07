@@ -82,9 +82,9 @@ records_by_id()
 # Return one ore more field values based on a given category_record(s) & :field:
 field_by_category_record()
 {
-    local category_record=${1:-UNUSED} field=${2:-UNUSED} category_field
+    local category_record=${1:-UNUSED} field=${2:-UNUSED} category_field_value
     
-    category_field=$(echo "${category_record}" | gawk -v _field="$field" -F: '
+    category_field_value=$(echo "${category_record}" | gawk -v _field="$field" -F: '
     BEGIN { regex_f=":"_field":"; } $0 ~ regex_f { getline; field[NR] } NR in field')
 
     echo  "${category_field_value}"
