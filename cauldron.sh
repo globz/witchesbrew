@@ -154,8 +154,9 @@ EOF
                 esac
             done
 
-            # Invoke mix & update optional fields
-            _spellpouch -p "mix" -e "${reagent}" "${wd}" "${env}" && _spellpouch -p "opt_fields" -e "${reagent}" "REAGENT" "${wd}"
+            # Invoke mix with all the rest of the arguments which may have been
+            # passed by the user & update optional fields
+            _spellpouch -p "mix" -e "${reagent}" "${wd}" "${env}" "${@:3}" && _spellpouch -p "opt_fields" -e "${reagent}" "REAGENT" "${wd}"
 
             shift $((OPTIND -1))
             ;;
@@ -182,8 +183,9 @@ EOF
                 esac
             done
 
-            # Invoke brew & update optional fields
-            _spellpouch -p "brew" -e "${recipe}" "${wd}" "${env}" && _spellpouch -p "opt_fields" -e "${recipe}" "RECIPE" "${wd}"
+            # Invoke brew with all the rest of the arguments which may have been
+            # passed by the user & update optional fields            
+            _spellpouch -p "brew" -e "${recipe}" "${wd}" "${env}" "${@:3}" && _spellpouch -p "opt_fields" -e "${recipe}" "RECIPE" "${wd}"
 
             shift $((OPTIND -1))
             ;;

@@ -6,7 +6,7 @@
 mix()
 {
 
-    local reagent=$1 wd=$2 env=$3 r_src src_sh src
+    local all_args=("$@") reagent=$1 wd=$2 env=$3 rest_args=("${all_args[@]:3}") r_src src_sh src
     local wb=$(readlink -f $HOME/bin/witchesbrew_wd)
 
     source "${wb}/spells/_spellpouch.sh"
@@ -18,7 +18,7 @@ mix()
     src_sh=$(echo "${r_src}" | gawk '/\.sh$/ { print }')
     if [[ ! -z "${src_sh}" ]]; then
         src=$(echo "${src_sh}" | gawk '/\.sh$/ { sub(/\.sh$/, "") } { print }' | tr '-' '_')
-        _spellpouch -p "${src}" -w "${wd}/reagents/${reagent}" -e "${env}"
+        _spellpouch -p "${src}" -w "${wd}/reagents/${reagent}" -e "${env}" "${rest_args[@]}"
     else
         echo -e "\033[31merror :\e[0m Could not mix requested reagent!" && return 1
     fi
