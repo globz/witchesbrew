@@ -4,10 +4,18 @@ example_reagent()
 {
 
   local env=$1
+  local optional_arg1=$2
   local wd=$(pwd)
 
   echo "Hello from example_reagent with ENV: ${env}"
 
+  # Optional arguments may be added after the host environment
+  # -e env my_optional_arg1 my_optional_arg2 ...
+  if [[ ! -z "$optional_arg1" ]]
+  then
+      echo "Detected optional argument: ${optional_arg1}"
+  fi
+    
   # Sourcing spellpouch from working directory (user grimoire)
   source "${wd}/spells/spellpouch.sh"
 
