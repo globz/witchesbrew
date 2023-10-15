@@ -156,6 +156,7 @@ EOF
 
             # Invoke mix with all the rest of the arguments which may have been
             # passed by the user & update optional fields
+            : ${env:?Missing -e <env>}
             _spellpouch -p "mix" -e "${reagent}" "${wd}" "${env}" "${@:3}" && _spellpouch -p "opt_fields" -e "${reagent}" "REAGENT" "${wd}"
 
             shift $((OPTIND -1))
@@ -184,9 +185,9 @@ EOF
             done
 
             # Invoke brew with all the rest of the arguments which may have been
-            # passed by the user & update optional fields            
+            # passed by the user & update optional fields
             _spellpouch -p "brew" -e "${recipe}" "${wd}" "${env}" "${@:3}" && _spellpouch -p "opt_fields" -e "${recipe}" "RECIPE" "${wd}"
-
+            : ${env:?Missing -e <env>}
             shift $((OPTIND -1))
             ;;
     esac
