@@ -13,3 +13,9 @@ application architecture.
 Installation :
 - git clone https://github.com/globz/witchesbrew.git witchesbrew
 - cd witchesbrew/ && ./install.sh
+
+TODO :
+
++ [ ] Add bash completion
++ [ ] No longer use ~/.profile during installation
++ [ ] Installation should set the path @ ~/.bash_profile
