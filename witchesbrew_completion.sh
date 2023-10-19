@@ -7,7 +7,7 @@ _witchesbrew_completion() {
     prev="${COMP_WORDS[COMP_CWORD-1]}"
     prev2="${COMP_WORDS[COMP_CWORD-2]}"
     prev3="${COMP_WORDS[COMP_CWORD-3]}"
-    opts="-h --help grimoire example study list mix brew"  # Updated list of available options
+    opts="-h grimoire example study list mix brew"  # Updated list of available options
 
     case "${prev}" in
         "witchesbrew")
