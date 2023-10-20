@@ -19,6 +19,7 @@ then
 if [ -d "$HOME/bin" ]; then
     export PATH="$HOME/bin:$PATH"
 fi
+. "$HOME/bin/witchesbrew_wd/witchesbrew_completion.sh"
 EOF
 else
     echo "$HOME/bin already exported to PATH"

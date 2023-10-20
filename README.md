@@ -16,6 +16,7 @@ Installation :
 
 TODO :
 
-+ [ ] Add bash completion
++ [x] Add bash completion
 + [ ] No longer use ~/.profile during installation
 + [ ] Installation should set the path @ ~/.bash_profile
++ [ ] Instead of $HOME/bin => $HOME/.witchesbrew
