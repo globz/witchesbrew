@@ -20,3 +20,4 @@ TODO :
 + [ ] No longer use ~/.profile during installation
 + [ ] Installation should set the path @ ~/.bash_profile
 + [ ] Instead of $HOME/bin => $HOME/.witchesbrew
++ [x] Create uninstall script
