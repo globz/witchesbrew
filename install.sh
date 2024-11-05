@@ -8,13 +8,13 @@ witchesbrew_do_install() {
 echo "Installing witchesbrew..."
 
 
-if [ -f "$HOME/bin/witchesbrew" ];
+if [ -f "$HOME/.local/bin/witchesbrew" ];
 then
     echo "Aborting. You should first uninstall witchesbrew."
     return 1
 fi
 
-if [ -L "$HOME/bin/witchesbrew_wd" ];
+if [ -L "$HOME/.local/bin/witchesbrew_wd" ];
 then
     echo "Aborting. You should first uninstall witchesbrew."
     return 1
@@ -28,46 +28,36 @@ then
     exit 1
 fi
 
-# $HOME/bin must be exported to $PATH
-if ! grep -Fq 'PATH="$HOME/bin:$PATH"' ~/.profile
-then
-    cat<<"EOF" >> ~/.profile
-if [ -d "$HOME/bin" ]; then
-    export PATH="$HOME/bin:$PATH"
-fi
-EOF
-else
-    echo "$HOME/bin already exported to PATH"
-fi
-
 # bash_completion
-if ! grep -Fq '\. "$HOME/bin/witchesbrew_wd/witchesbrew_completion.sh"' ~/.profile
+if ! grep -Fq '\. "$HOME/.local/bin/witchesbrew_wd/witchesbrew_completion.sh"' ~/.profile
 then
     cat<<"EOF" >> ~/.profile
-\. "$HOME/bin/witchesbrew_wd/witchesbrew_completion.sh"
+\. "$HOME/.local/bin/witchesbrew_wd/witchesbrew_completion.sh"
 EOF
 else
     echo "bash_completion for witchesbrew is already present"
 fi
 
-# Create $HOME/bin if not available
-if [ -d "$HOME/bin" ];
+# Create $HOME/.local/bin if it does not already exist
+if [ -d "$HOME/.local/bin" ];
 then
-    echo "Directory $HOME/bin already exists."
+    echo "Skipping creation of directory $HOME/.local/bin since it already exists."
 else
-    echo "Creating Directory $HOME/bin" && mkdir $HOME/bin
+    echo "Creating Directory $HOME/.local/bin" && mkdir $HOME/.local/bin
 fi
 
+cat<<"EOF" >> "$HOME/.local/bin/witchesbrew"
 function repl() {
-    local wd=$(readlink -f $HOME/bin/witchesbrew_wd)
+    local wd=$(readlink -f $HOME/.local/bin/witchesbrew_wd)
 
     . $wd/cauldron.sh
     cauldron "$@"
 }
+repl "$@"
+EOF
 
-typeset -f > $HOME/bin/witchesbrew && echo 'repl "$@"' >> $HOME/bin/witchesbrew
-chmod u+x $HOME/bin/witchesbrew
-ln -sf "$(pwd)" $HOME/bin/witchesbrew_wd
+chmod u+x $HOME/.local/bin/witchesbrew
+ln -sf "$(pwd)" $HOME/.local/bin/witchesbrew_wd
 
 cat<<"EOF"
                              (

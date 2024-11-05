@@ -6,7 +6,7 @@ opt_fields()
 {
 
     local name=$1 type=$2 wd=$3 from_record to_record version
-    local wb=$(readlink -f $HOME/bin/witchesbrew_wd)
+    local wb=$(readlink -f $HOME/.local/bin/witchesbrew_wd)
     local datetime=$(date)
     
     source "${wb}/spells/_spellpouch.sh"

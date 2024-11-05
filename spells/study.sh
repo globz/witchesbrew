@@ -4,7 +4,7 @@ study()
 {
 
     local type=$1 name=$2 wd=$3 r_src src_sh src version description path
-    local wb=$(readlink -f $HOME/bin/witchesbrew_wd)
+    local wb=$(readlink -f $HOME/.local/bin/witchesbrew_wd)
 
     source "${wb}/spells/_spellpouch.sh"
 

@@ -7,7 +7,7 @@ brew()
 {
 
     local all_args=("$@") recipe=$1 wd=$2 env=$3 rest_args=("${all_args[@]:3}") r_src src_sh src
-    local wb=$(readlink -f $HOME/bin/witchesbrew_wd)
+    local wb=$(readlink -f $HOME/.local/bin/witchesbrew_wd)
 
     source "${wb}/spells/_spellpouch.sh"
 

@@ -6,25 +6,25 @@ witchesbrew_do_uninstall() {
 
     echo "Uninstalling witchesbrew"
 
-    # Remove witchesbrew from $HOME/bin/
-    if [ -f "$HOME/bin/witchesbrew" ];
+    # Remove witchesbrew from $HOME/.local/bin/
+    if [ -f "$HOME/.local/bin/witchesbrew" ];
     then
-        echo 'Removing $HOME/bin/witchesbrew' && rm $HOME/bin/witchesbrew
+        echo 'Removing $HOME/.local/bin/witchesbrew' && rm $HOME/.local/bin/witchesbrew
     else
-        echo 'Skipping removing $HOME/bin/witchesbrew, does not exist.'
+        echo 'Skipping removing $HOME/.local/bin/witchesbrew, does not exist.'
     fi
 
-    if [ -L "$HOME/bin/witchesbrew_wd" ];
+    if [ -L "$HOME/.local/bin/witchesbrew_wd" ];
     then
-        echo 'Removing $HOME/bin/witchesbrew_wd' && rm $HOME/bin/witchesbrew_wd
+        echo 'Removing $HOME/.local/bin/witchesbrew_wd' && rm $HOME/.local/bin/witchesbrew_wd
     else
-        echo 'Skipping removing $HOME/bin/witchesbrew_wd, does not exist.'
+        echo 'Skipping removing $HOME/.local/bin/witchesbrew_wd, does not exist.'
     fi
 
     # Remove bash_completion from ~/.profile
-    if grep -Fq '\. "$HOME/bin/witchesbrew_wd/witchesbrew_completion.sh"' ~/.profile
+    if grep -Fq '\. "$HOME/.local/bin/witchesbrew_wd/witchesbrew_completion.sh"' ~/.profile
     then
-        echo "Removing bash_completion from ~/profile" && sed -e 's|\\. "$HOME/bin/witchesbrew_wd/witchesbrew_completion.sh"||g' -i ~/.profile
+        echo "Removing bash_completion from ~/profile" && sed -e 's|\\. "$HOME/.local/bin/witchesbrew_wd/witchesbrew_completion.sh"||g' -i ~/.profile
     else
         echo "Skipping removing bash_completion from ~/.profile, does not exist."
     fi

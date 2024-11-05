@@ -2,7 +2,7 @@
 
 _spellpouch()
 {
-    local OPTIND opt _pouch wb=$(readlink -f $HOME/bin/witchesbrew_wd)
+    local OPTIND opt _pouch wb=$(readlink -f $HOME/.local/bin/witchesbrew_wd)
 
     while getopts "p:w:s:e" opt; do
         case "${opt}" in

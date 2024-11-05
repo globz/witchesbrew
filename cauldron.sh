@@ -5,7 +5,7 @@ cauldron()
     
     local OPTIND opt
     local wd=$(pwd)
-    local wb=$(readlink -f $HOME/bin/witchesbrew_wd)
+    local wb=$(readlink -f $HOME/.local/bin/witchesbrew_wd)
 
     # =_spellpouch=
     source "${wb}/spells/_spellpouch.sh"

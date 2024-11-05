@@ -17,7 +17,8 @@ Installation :
 TODO :
 
 + [x] Add bash completion
-+ [ ] No longer use ~/.profile during installation
-+ [ ] Installation should set the path @ ~/.bash_profile
-+ [ ] Instead of $HOME/bin => $HOME/.witchesbrew
++ [X] Install witchesbrew in $HOME/.local/bin
 + [x] Create uninstall script
++ [ ] Create update feature (git pull)
++ [ ] Try to remove hard coded $wd path or make it a single entry point
++ [ ] Move witchesbrew folder to $HOME/.local/bin instead of symbolic link
