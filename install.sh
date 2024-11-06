@@ -21,11 +21,10 @@ then
 fi
 
 # gawk requirement
-_gawk=$( command -v gawk )
-if [ -z "${_gawk}" ];
+if [ -z $(command -v gawk) ];
 then
     echo -e "\033[31mError :\e[0m Aborting installation... [host-requirement: gawk is not installed]"
-    exit 1
+    return 1
 fi
 
 # bash_completion
@@ -84,7 +83,7 @@ https://github.com/globz/witchesbrew
 
 EOF
 echo "witchesbrew is now installed."
-echo -e "\nClose and reopen your terminal to start using witchesbrew"
+echo -e "\nPlease run 'source ~/.profile' or restart your terminal for changes to take effect"
 
 }
 
